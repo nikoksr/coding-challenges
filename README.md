@@ -1,6 +1,6 @@
 Coding Challenges
 =================
-List of small coding projects / challenges - done for practice purposes.
+List of small coding projects / challenges - done for practice purposes
 
 
 Project Overview
@@ -12,3 +12,8 @@ Project Overview
 * Happy Numbers
 * Quicksort
 * Reverse String
+
+
+Additional Informations
+=======================
+Written mostly in C(GCC 8.1.1) and Python(3.6)
