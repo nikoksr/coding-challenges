@@ -41,9 +41,10 @@ int PickMedianPivot(int *, int, int);
 /* main / wrapper function */
 int main()
 {
-    /* take in individual array length */
     int array_length;
-    printf("Enter the length of your random array: ");
+
+    /* take in individual array length */
+    printf("QUICKSORT\n\nEnter the length of your random array: ");
     scanf("%d", &array_length);
     
     /* create a random array of given length */
@@ -91,7 +92,7 @@ void PrintArray(int *number_array, int array_length)
     for(int i = 0; i < array_length; ++i)
     {
         /* new row after every 25th element */
-        if(i % 25 == 0)
+        if(i != 0 && i % 25 == 0)
         {
             printf("\n");
         }
