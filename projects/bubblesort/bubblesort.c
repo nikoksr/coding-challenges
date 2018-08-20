@@ -43,7 +43,7 @@ int main()
     /* print sorted array */
     printf("\nSorted Array:\n");
     PrintArray(number_array, array_length);
-    
+
     free(number_array);
     
     return 0;
