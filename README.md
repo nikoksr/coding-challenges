@@ -5,6 +5,7 @@ List of small coding projects / challenges - done for practice purposes
 
 Project Overview
 ================
+* Bubblesort
 * Change Return
 * Collatz-Conjecture Algorithm
 * Fibonacci
