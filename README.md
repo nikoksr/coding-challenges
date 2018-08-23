@@ -11,10 +11,11 @@ Project Overview
 * Fibonacci
 * FizzBuzz
 * Happy Numbers
+* Pig Latin
 * Quicksort
 * Reverse String
 
 
 Additional Informations
 =======================
-Written mostly in C(GCC 8.1.1) and Python(3.6)
+Written mostly in C(GCC 8.2) and Python(3.7)
