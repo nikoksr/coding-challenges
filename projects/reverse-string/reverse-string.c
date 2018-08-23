@@ -13,7 +13,7 @@
 
 /* declarations */
 char *ReverseString(char *);
-
+void RemoveTrailingNewLine(char *);
 
 /* main / wrapper function */
 int main()
@@ -22,6 +22,8 @@ int main()
 
     printf("Enter some string: ");
     fgets(some_string, 255, stdin);
+
+    RemoveTrailingNewLine(some_string);
     printf("%s%s\n", some_string, ReverseString(some_string));
 
     return 0;
@@ -29,6 +31,7 @@ int main()
 
 
 /* definitions */
+/* reverse a given string */
 char *ReverseString(char *some_string)
 {
     int string_length = strlen(some_string) - 1;
@@ -42,4 +45,11 @@ char *ReverseString(char *some_string)
     }
 
     return reverse_string;
+}
+
+
+/* removes a trailing newline created by fgets() */
+void RemoveTrailingNewLine(char *some_string)
+{
+    some_string[strcspn(some_string, "\n")] = 0;
 }
