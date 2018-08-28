@@ -1,6 +1,6 @@
 Coding Challenges
 =================
-List of small coding projects / challenges - done for practice purposes
+List of small coding projects / challenges - done for practice and fun
 
 
 Project Overview
