@@ -10,6 +10,7 @@ Project Overview
 * Collatz-Conjecture Algorithm
 * Fibonacci
 * FizzBuzz
+* Insertsort
 * Happy Numbers
 * Pig Latin
 * Quicksort
