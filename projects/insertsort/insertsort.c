@@ -9,55 +9,29 @@
 
 /* includes */
 #include <stdio.h>
+#include "../../helper-functions/arrays/array_help.h"
 
 
 /* declarations */
-void PrintArray(int *, int);
-void Swap(int *, int *);
 void InsertSort(int *, int );
 
 
 /* main / wrapper function */
 int main()
 {   
+    const int new_line = 25;
     const int length = 5;
     int some_array[5] = {3, 2, 5, 1, 4};
 
-    PrintArray(some_array, length);
+    PrintArray(some_array, length, new_line);
     InsertSort(some_array, length);
-    PrintArray(some_array, length);
+    PrintArray(some_array, length, new_line);
 
     return 0;
 }
 
 
 /* definitions */
-/* print an array */
-void PrintArray(int *some_array, int array_length)
-{
-    for(int i = 0; i < array_length; ++i)
-    {
-        if(i != 0 && i % 25 == 0)
-        {
-            printf("\n");
-        }
-
-        printf("%d", some_array[i]);
-    }
-
-    printf("\n");
-}
-
-
-/* swap two values */
-void Swap(int *value_one, int *value_two)
-{
-    int temp = *value_one;
-    *value_one = *value_two;
-    *value_two = temp;
-}
-
-
 /* run insertion sort algorithm */
 void InsertSort(int *some_array, int array_length)
 {

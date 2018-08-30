@@ -12,13 +12,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "../../helper-functions/arrays/array_help.h"
 
 
 /* declarations */
 void Bubblesort(int *, int);
-void Swap(int *, int *);
-void PrintArray(int *, int);
-int *MakeRandomArray(int);
 
 
 /* main / wrapper function */
@@ -31,18 +29,21 @@ int main()
     scanf("%d", &array_length);
     
     /* create a random array of given length */
-    int *number_array = MakeRandomArray(array_length);
+    int *number_array = (int *) malloc(array_length * sizeof(int));
+    MakeRandomArray(number_array, array_length);
     
     /* print unsorted array */
+    int new_line = 25;
+
     printf("\nRandom Array:\n");
-    PrintArray(number_array, array_length);
+    PrintArray(number_array, array_length, new_line);
     
     /* sort the array */
     Bubblesort(number_array, array_length);
     
     /* print sorted array */
     printf("\nSorted Array:\n");
-    PrintArray(number_array, array_length);
+    PrintArray(number_array, array_length, new_line);
 
     free(number_array);
     
@@ -65,50 +66,4 @@ void Bubblesort(int *some_array, int array_length)
             i = -1;
         }
     }
-}
-
-
-/* swap values of two items */
-void Swap(int *number_one, int *number_two)
-{
-    int temp = *number_one;
-    *number_one = *number_two;
-    *number_two = temp;
-}
-
-
-/* print an array */
-void PrintArray(int *some_array, int array_length)
-{
-    /* loop through every element */
-    for(int i = 0; i < array_length; ++i)
-    {
-        /* new row after every 25th element */
-        if(i != 0 && i % 25 == 0)
-        {
-            printf("\n");
-        }
-
-        printf("%d ", some_array[i]);
-    }
-
-    printf("\n");
-}
-
-
-/* makes an array of given length filled with random values */
-int *MakeRandomArray(int array_length)
-{
-    size_t array_size = array_length * sizeof(int); 
-    int *number_array = (int *) malloc(array_size);
-
-    srand(time(NULL));
-
-    for(int i = 0; i < array_length; i++)
-    {
-        int random = rand() % 10;
-        number_array[i] = random;
-    }
-
-    return number_array;
 }

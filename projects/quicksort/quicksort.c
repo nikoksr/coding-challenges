@@ -27,14 +27,12 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include "../../helper-functions/arrays/array_help.h"
 
 
 /* declarations */
-int *MakeRandomArray(int);
-void PrintArray(int *, int);
 void Quicksort(int *, int, int);
 int Partitioning(int *, int, int, int);
-void Swap(int *, int *);
 int PickMedianPivot(int *, int, int);
 
 
@@ -48,18 +46,21 @@ int main()
     scanf("%d", &array_length);
     
     /* create a random array of given length */
-    int *number_array = MakeRandomArray(array_length);
+    int *number_array = (int *) malloc(sizeof(int) * array_length);
+    MakeRandomArray(number_array, array_length);
     
+    const int new_line = 25;
+
     /* print unsorted array */
     printf("\nRandom Array:\n");
-    PrintArray(number_array, array_length);
+    PrintArray(number_array, array_length, new_line);
     
     /* sort the array */
     Quicksort(number_array, 0, array_length - 1);
     
     /* print sorted array */
     printf("\nSorted Array:\n");
-    PrintArray(number_array, array_length);
+    PrintArray(number_array, array_length, new_line);
     
     free(number_array);
 
@@ -67,43 +68,7 @@ int main()
 }
 
 
-/* makes an array of given length filled with random values */
-int *MakeRandomArray(int array_length)
-{
-    size_t array_size = array_length * sizeof(int); 
-    int *number_array = (int *) malloc(array_size);
-
-    srand(time(NULL));
-
-    for(int i = 0; i < array_length; i++)
-    {
-        int random = rand() % 10;
-        number_array[i] = random;
-    }
-
-    return number_array;
-}
-
-
-/* prints an array */
-void PrintArray(int *number_array, int array_length)
-{
-    /* loop through every element */
-    for(int i = 0; i < array_length; ++i)
-    {
-        /* new row after every 25th element */
-        if(i != 0 && i % 25 == 0)
-        {
-            printf("\n");
-        }
-
-        printf("%d ", number_array[i]);
-    }
-
-    printf("\n");
-}
-
-
+/* definitions */
 /* quicksort algorithm */
 void Quicksort(int *number_array, int low, int high)
 { 
@@ -178,13 +143,4 @@ int PickMedianPivot(int *number_array, int low, int high)
     }
 
     return high;
-}
-
-
-/* swaps to elements of an array */
-void Swap(int *value_one, int *value_two)
-{
-    int temp = *value_one;
-    *value_one = *value_two;
-    *value_two = temp;
 }
