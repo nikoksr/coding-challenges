@@ -9,7 +9,7 @@
 
 /* includes */
 #include <stdio.h>
-#include "../../helper-functions/arrays/array_help.h"
+#include "../../helper-functions/array_help.h"
 
 
 /* declarations */

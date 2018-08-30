@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../../helper-functions/arrays/array_help.h"
+#include "../../helper-functions/array_help.h"
 
 
 /* declarations */

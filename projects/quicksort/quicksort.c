@@ -27,7 +27,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include "../../helper-functions/arrays/array_help.h"
+#include "../../helper-functions/array_help.h"
 
 
 /* declarations */
