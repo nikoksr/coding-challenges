@@ -9,12 +9,13 @@
 
 /* includes */
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 
 /* declarations */
 float VectorDistance(float *, float *);
-float *ShortestPath(float *);
+float *ShortestPath(float *, int);
 
 /* main / wrapper function */
 int main()
@@ -44,7 +45,11 @@ float VectorDistance(float *vector_one, float *vector_two)
 
 
 /* calculate the shortest path in an array of coordinates / vectors */
-float *ShortestPath(float *vector_array)
+float *ShortestPath(float *vector_array, int array_length)
 {
+    float *shortest_path = (float *) malloc(array_length * sizeof(float));
+    float shortest_distance = 0.0;
+    float current_distance = 0.0;
+
     return 0;
 }
