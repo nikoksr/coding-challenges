@@ -29,7 +29,6 @@
 #include <string.h>
 #include "../../helper-functions/array_help.h"
 
-
 /* declarations */
 void Quicksort(int *, int, int);
 int Partitioning(int *, int, int, int);
