@@ -22,15 +22,23 @@ void selection_sort(int *, int);
 /* main / wrapper function */
 int main()
 {
+    printf("SELECTION-SORT\n\n");
+    
+    /* create a random array of given length */
     const int length = 100000;
     int *number_array = (int *) malloc(sizeof(int) * length);
     MakeRandomArray(number_array, length);
 
+    /* print unsorted array */
     const int new_line = 25;
     PrintArray(number_array, length, new_line);
+
+    /* sort the array */
     selection_sort(number_array, length);
+
+    /* print sorted array */
     PrintArray(number_array, length, new_line);
-       
+
     free(number_array);
 
     return 0;
