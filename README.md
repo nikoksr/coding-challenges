@@ -15,8 +15,8 @@ Project Overview
 * Pig Latin
 * Quicksort
 * Reverse String
-
+* Selectionsort
 
 Additional Informations
 =======================
-Written mostly in C(GCC 8.2) and Python(3.7)
+Written in C(GCC 8.2) and Python(3.7)
