@@ -5,6 +5,7 @@ List of small coding projects / challenges - done for practice and fun
 
 Project Overview
 ================
+* Binary Search
 * Bubblesort
 * Change Return
 * Collatz-Conjecture Algorithm
