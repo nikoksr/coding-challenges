@@ -1,7 +1,11 @@
 #include "array_help.h"
 
+#include <stdio.h>                                                                                   
+#include <stdlib.h>                                                                                  
+#include <time.h>
+
 /* print an array */
-void PrintArray(int *some_array, int array_length, int new_line)
+void print_array(int *some_array, const int array_length, const int new_line)
 {
     /* loop through every element */
     for(int i = 0; i < array_length; ++i)
@@ -20,7 +24,7 @@ void PrintArray(int *some_array, int array_length, int new_line)
 }
 
 /* make an array of given length filled with random values */
-void MakeRandomArray(int *random_array, int array_length)
+void make_random_array(int *random_array, const int array_length)
 {
     srand(time(NULL));
 
@@ -32,7 +36,7 @@ void MakeRandomArray(int *random_array, int array_length)
 }
 
 /* swap the values of two integer variables */
-void Swap(int *var_one, int *var_two)
+void swap(int *var_one, int *var_two)
 {
     int temp = *var_one;
     *var_one = *var_two;
