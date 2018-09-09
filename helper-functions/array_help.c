@@ -35,6 +35,16 @@ void make_random_array(int *random_array, const int array_length)
     }
 }
 
+
+/* make an array of given length filled with sorted values */
+void make_sorted_array(int *sorted_array, const int array_length)
+{
+    for(int i = 0; i < array_length; ++i)
+    {
+        sorted_array[i] = (i + 1);
+    }
+}
+
 /* swap the values of two integer variables */
 void swap(int *var_one, int *var_two)
 {
