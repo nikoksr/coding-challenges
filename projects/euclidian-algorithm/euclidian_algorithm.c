@@ -16,8 +16,9 @@
 #include <stdio.h>
 
 /* declarations */
-int greatest_common_divisor(const int num_one, const int num_two);
 void sort_bigger_smaller(int *num_one, int *num_two);
+int euclidian_algo(int bigger, int smaller);
+int greatest_common_divisor(const int num_one, const int num_two);
 
 /* main / wrapper function */
 int main()
@@ -45,6 +46,29 @@ void sort_bigger_smaller(int *num_one, int *num_two)
     }
 }
 
+/* the actual algorithm */
+int euclidian_algo(int bigger, int smaller)
+{
+    /* actual algorithm */
+    int remainder = bigger % smaller;
+    int old_remainder;
+
+    while(remainder > 1)
+    {
+        old_remainder = remainder;
+        bigger = smaller;
+        smaller = remainder;
+        remainder = bigger % smaller;
+    }
+
+    if(remainder == 0)
+    {
+        return old_remainder;
+    }
+    
+    return 1;
+}
+
 /* using the euclidian algorithm to calculate the GCD of two numbers */
 int greatest_common_divisor(const int num_one, const int num_two)
 {
@@ -68,22 +92,7 @@ int greatest_common_divisor(const int num_one, const int num_two)
         return smaller;
     }
 
-    /* actual algorithm */
-    int remainder = bigger % smaller;
-    int old_remainder;
+    int result_euc = euclidian_algo(bigger, smaller);
 
-    while(remainder > 1)
-    {
-        old_remainder = remainder;
-        bigger = smaller;
-        smaller = remainder;
-        remainder = bigger % smaller;
-    }
-
-    if(remainder == 0)
-    {
-        return old_remainder;
-    }
-    
-    return 1;
+    return result_euc;
 }
