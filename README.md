@@ -9,6 +9,7 @@ Project Overview
 * Bubblesort
 * Change Return
 * Collatz-Conjecture Algorithm
+* Euclidian Algorithm
 * Fibonacci
 * FizzBuzz
 * Insertsort
