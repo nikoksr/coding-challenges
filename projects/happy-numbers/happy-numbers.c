@@ -9,32 +9,25 @@
  *                                              *
  ************************************************/
 
-
 /* includes */
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
-
 /* declarations */
-int IsHappyNumber(unsigned int number);
-int IsInArray(unsigned int number, unsigned int* number_array, int array_length);
-unsigned int SumDigits(unsigned int number);
+int is_happy_number(int);
+int is_in_array(int, int *, int);
+unsigned int sum_digits(int);
 
 
 /* main / wrapper function */
 int main()
 {
-    /* user input */
-    unsigned int number = 1;
-
     printf("HAPPY NUMBERS\n\n");
-    printf("Please enter a number(n > 0): ");
-    scanf("%d", &number);
-    printf("\n");
-
+    
     /* calculate and evaluate */
-    int result = IsHappyNumber(number);
+    const int number = 10;
+    const int result = is_happy_number(number);
 
     switch (result) 
     {
@@ -56,23 +49,23 @@ int main()
 
 
 /* check if a given number is a happy number */
-int IsHappyNumber(unsigned int number)
+int is_happy_number(int number)
 { 
-    int array_length = 255;
-    unsigned int* number_array = (unsigned int*) malloc(array_length * sizeof(unsigned int*));
+    const int array_length = 255;
+    int* number_array = (int *) malloc(sizeof(int) * array_length);
     int counter = 0;
   
     /* while the number is > 1 and was not found previously (loop) - keep calculating */
-    while(number > 1 && IsInArray(number, number_array, array_length) == 0)
+    while(number > 1 && is_in_array(number, number_array, array_length) == 0)
     {
         /* overwrite array to prevent overflow */
-        if(counter > 254)
+        if(counter > (array_length - 1))
         {
             counter = 0;
         }
 
         number_array[counter] = number;
-        number = SumDigits(number);
+        number = sum_digits(number);
         counter = counter + 1;
     }
   
@@ -88,7 +81,7 @@ int IsHappyNumber(unsigned int number)
 
 
 /* checks an array of numbers if a given number is already in it */
-int IsInArray(unsigned int number, unsigned int* number_array, int array_length)
+int is_in_array(const int number, int *number_array, const int array_length)
 {
     for(int i = 0; i < array_length; i++)
     {
@@ -105,7 +98,7 @@ int IsInArray(unsigned int number, unsigned int* number_array, int array_length)
 
 
 /* return sum of digits of a given integer */
-unsigned int SumDigits(unsigned int number) 
+unsigned int sum_digits(int number) 
 {
     unsigned int sum = 0;
 

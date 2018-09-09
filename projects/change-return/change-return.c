@@ -8,15 +8,13 @@
  *      need to return
  ************************************************/
 
-
 /* includes */
 #include <stdio.h>
 #include <math.h>
 
-
 /* declarations */
-float Difference(float, float);
-void ChangeReturn(float, float);
+float difference(float, float);
+void change_return(float, float);
 
 /* main / wrapper function */
 int main()
@@ -31,7 +29,7 @@ int main()
     printf("Enter the money(EUR) you pay: ");
     scanf("%f", &money_payed);
    
-    ChangeReturn(price, money_payed);
+    change_return(price, money_payed);
 
     return 0;
 }
@@ -39,28 +37,28 @@ int main()
 
 /* definitions */
 /* calculate the rounded difference o between two values */
-float Difference(float value_one, float value_two)
+float difference(float value_one, float value_two)
 {
     return (roundf((value_one - value_two) * 100) / 100);
 }
 
 
 /* calculate the change return */
-void ChangeReturn(float price, float money_payed)
+void change_return(const float price, float money_payed)
 {
-    float difference = Difference(money_payed, price);
+    float diff = difference(money_payed, price);
     
     /* run until enough money was payed */
-    while(difference < 0)
+    while(diff < 0)
     {
         float additional_money = 0.0;
 
-        printf("Sorry, you have to pay %5.2f Euros more.\n", (difference * -1));
+        printf("Sorry, you have to pay %5.2f Euros more.\n", (diff * -1));
         printf("Additional money(EUR): ");
         scanf("%f", &additional_money);
 
         money_payed = money_payed + additional_money;
-        difference = Difference(money_payed, price);
+        diff = difference(money_payed, price);
     }
     
     /* EUR */
@@ -76,10 +74,10 @@ void ChangeReturn(float price, float money_payed)
      * */
     for(int i = 0; i < 15; i++)
     {
-        return_money[i] = floorf(difference / MONEY[i]);
-        difference = Difference(difference, (return_money[i] * MONEY[i]));
+        return_money[i] = floorf(diff / MONEY[i]);
+        diff = difference(diff, (return_money[i] * MONEY[i]));
 
-        if(difference == 0.0)
+        if(diff == 0.0)
         {
             break;
         }

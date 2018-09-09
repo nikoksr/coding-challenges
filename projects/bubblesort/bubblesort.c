@@ -16,34 +16,29 @@
 
 
 /* declarations */
-void Bubblesort(int *, int);
+void bubblesort(int *, int);
 
 
 /* main / wrapper function */
 int main()
 {
-    int array_length;
-    
-    /* take in individual array length */
-    printf("BUBBLESORT\n\nEnter the length of your random array: ");
-    scanf("%d", &array_length);
-    
+    printf("BUBBLESORT\n\n");
+
     /* create a random array of given length */
-    int *number_array = (int *) malloc(array_length * sizeof(int));
-    MakeRandomArray(number_array, array_length);
+    const int array_length = 10;
+    int *number_array = (int *) malloc(sizeof(int) * array_length);
+    make_random_array(number_array, array_length);
     
     /* print unsorted array */
-    int new_line = 25;
+    const int new_line = 50;
 
-    printf("\nRandom Array:\n");
-    PrintArray(number_array, array_length, new_line);
+    print_array(number_array, array_length, new_line);
     
     /* sort the array */
-    Bubblesort(number_array, array_length);
+    bubblesort(number_array, array_length);
     
     /* print sorted array */
-    printf("\nSorted Array:\n");
-    PrintArray(number_array, array_length, new_line);
+    print_array(number_array, array_length, new_line);
 
     free(number_array);
     
@@ -53,7 +48,7 @@ int main()
 
 /* definitions */
 /* bubblesort algorithm */
-void Bubblesort(int *some_array, int array_length)
+void bubblesort(int *some_array, const int array_length)
 {
     for(int i = 0; i < array_length - 1; ++i)
     {
@@ -62,7 +57,7 @@ void Bubblesort(int *some_array, int array_length)
          * */
         if(some_array[i] > some_array[i + 1])
         {
-            Swap(&some_array[i], &some_array[i + 1]);
+            swap(&some_array[i], &some_array[i + 1]);
             i = -1;
         }
     }

@@ -12,18 +12,16 @@
  *              'egg'    - 'eggay'                          *
  ************************************************************/
 
-
 /* includes */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-
 /* declarations */
-char *PigLatin(char *);
-int IsLetterAVowel(char);
-int IndexOfFirstVowel(char *);
-void RemoveTrailingNewLine(char *);
+char *piglatin(char *);
+int is_letter_a_vowel(char);
+int index_of_first_vowel(char *);
+void remove_trailing_newline(char *);
 
 
 /* main / wrapper function */
@@ -35,7 +33,7 @@ int main()
             "Enter a string: ");
     fgets(some_string, 255, stdin);
     
-    RemoveTrailingNewLine(some_string);
+    remove_trailing_newline(some_string);
     
     if(some_string == NULL ||
             strlen(some_string) < 1)
@@ -44,7 +42,7 @@ int main()
         return -1;
     }
     
-    char *pig_latin_string = PigLatin(some_string);
+    char *pig_latin_string = piglatin(some_string);
     printf("%s - %s\n", some_string, pig_latin_string); 
 
     /* if string was modified, free the allocated memory */
@@ -60,9 +58,9 @@ int main()
 
 /* definitions */
 /* pig latin wrapper function */
-char *PigLatin(char *some_string)
+char *piglatin(char *some_string)
 {
-    int vowel_index = IndexOfFirstVowel(some_string);
+    int vowel_index = index_of_first_vowel(some_string);
 
     /* string doesn't contain a vowel */
     if(vowel_index == -1)
@@ -70,7 +68,7 @@ char *PigLatin(char *some_string)
         return some_string;
     }
     
-    int string_length = strlen(some_string) - 1;
+    const int string_length = strlen(some_string) - 1;
     char *pig_string = (char *)malloc(string_length * sizeof(some_string[0]));
     
     /* first letter is a vowel */
@@ -101,12 +99,12 @@ char *PigLatin(char *some_string)
 
 
 /* check if a letter / char is a vowel */
-int IsLetterAVowel(char letter)
+int is_letter_a_vowel(const char letter)
 {
-    char vowels[] = {'a', 'e', 'i', 'o', 'u'};
-    int amount_vowels = strlen(vowels);
+    const char vowels[] = {'a', 'e', 'i', 'o', 'u'};
+    const int amount_vowels = strlen(vowels);
     int index = 0;
-    
+   
     while(vowels[index] != letter)
     {
         if(index + 1 == amount_vowels)
@@ -122,12 +120,12 @@ int IsLetterAVowel(char letter)
 
 
 /* return the index of the first found vowel */
-int IndexOfFirstVowel(char *some_string)
+int index_of_first_vowel(char *some_string)
 {
-    int string_length = strlen(some_string);
+    const int string_length = strlen(some_string);
     int index = 0;
 
-    while(IsLetterAVowel(some_string[index]) != 1)
+    while(is_letter_a_vowel(some_string[index]) != 1)
     {
         if(index + 1 == string_length)
         {
@@ -142,7 +140,7 @@ int IndexOfFirstVowel(char *some_string)
 
 
 /* removes trailing newline created by fgets() */
-void RemoveTrailingNewLine(char *some_string)
+void remove_trailing_newline(char *some_string)
 {
     some_string[strcspn(some_string, "\n")] = 0;
 }

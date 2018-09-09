@@ -21,7 +21,6 @@
  *      partitioning                                        * 
  ************************************************************/
  
-
 /* includes */
 #include <stdio.h>
 #include <stdlib.h>
@@ -30,36 +29,29 @@
 #include "../../helper-functions/array_help.h"
 
 /* declarations */
-void Quicksort(int *, int, int);
-int Partitioning(int *, int, int, int);
-int PickMedianPivot(int *, int, int);
-
+void quicksort(int *, int, int);
+int partitioning(int *, int, int, int);
+int pick_Median_pivot(int *, int, int);
 
 /* main / wrapper function */
 int main()
 {
-    int array_length;
-
-    /* take in individual array length */
-    printf("QUICKSORT\n\nEnter the length of your random array: ");
-    scanf("%d", &array_length);
-    
+    printf("QUICKSORT\n\n");
+        
     /* create a random array of given length */
+    const int array_length = 10;
     int *number_array = (int *) malloc(sizeof(int) * array_length);
-    MakeRandomArray(number_array, array_length);
-    
-    const int new_line = 25;
+    make_random_array(number_array, array_length);
 
     /* print unsorted array */
-    printf("\nRandom Array:\n");
-    PrintArray(number_array, array_length, new_line);
+    const int new_line = 50;
+    Print_array(number_array, array_length, new_line);
     
     /* sort the array */
-    Quicksort(number_array, 0, array_length - 1);
+    quicksort(number_array, 0, array_length - 1);
     
     /* print sorted array */
-    printf("\nSorted Array:\n");
-    PrintArray(number_array, array_length, new_line);
+    print_array(number_array, array_length, new_line);
     
     free(number_array);
 
@@ -69,26 +61,26 @@ int main()
 
 /* definitions */
 /* quicksort algorithm */
-void Quicksort(int *number_array, int low, int high)
+void quicksort(int *number_array, const int low, const int high)
 { 
     if(low < high)
-    { 
+    {
         /* pick the pivot */
-        int pivot = PickMedianPivot(number_array, low, high);
+        int pivot = pick_median_pivot(number_array, low, high);
         
         /* partition the array */
-        pivot = Partitioning(number_array, pivot, low, high);
+        pivot = partitioning(number_array, pivot, low, high);
 
         /* recursion with both halfs of the partitioned array */
-        Quicksort(number_array, low, pivot);
-        Quicksort(number_array, pivot + 1, high);
+        quicksort(number_array, low, pivot);
+        quicksort(number_array, pivot + 1, high);
     }
 }
 
 
 /* partition the array
  * hoare partition scheme */
-int Partitioning(int *number_array, int pivot, int low, int high)
+int partitioning(int *number_array, const int pivot, const int low, const int high)
 {
     int i = low - 1;
     int j = high + 1;
@@ -116,29 +108,29 @@ int Partitioning(int *number_array, int pivot, int low, int high)
         }
 
         /* swap the smaller value with the bigger value */
-        Swap(&number_array[i], &number_array[j]);
+        swap(&number_array[i], &number_array[j]);
     }
 }
 
 
 /* picks pivot via median of three */
-int PickMedianPivot(int *number_array, int low, int high)
+int pick_median_pivot(int *number_array, const int low, const int high)
 {
     int middle = (low + high) / 2;
 
     if(number_array[middle] < number_array[low])
     {
-        Swap(&number_array[low], &number_array[middle]);
+        swap(&number_array[low], &number_array[middle]);
     }
 
     if(number_array[high] < number_array[low])
     {
-        Swap(&number_array[low], &number_array[high]);
+        swap(&number_array[low], &number_array[high]);
     }
     
     if(number_array[middle] < number_array[high])
     {
-        Swap(&number_array[middle], &number_array[high]);
+        swap(&number_array[middle], &number_array[high]);
     }
 
     return high;

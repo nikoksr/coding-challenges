@@ -8,25 +8,21 @@
  *      an empty product                        *
  ************************************************/
 
-
 /* includes */
 #include <stdio.h>
-
 
 /* declarations */
 int factorial_non_recursive(int);
 int factorial_recursive(int);
 int factorial_pre_checking(int);
 
-
 /* main / wrapper function */
 int main()
 {
-    int number;
+    printf("FACTORIAL\n\n");
+
+    const int number = 10;
     
-    printf("FACTORIAL\n\n"
-            "Pleaser enter a number: ");
-    scanf("%d", &number);
     printf("\nFactorial(recursive): %d\n"
             "Factorial(non-recursive): %d\n",
             factorial_recursive(number),

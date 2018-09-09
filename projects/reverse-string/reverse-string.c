@@ -4,16 +4,14 @@
  *  -> reverse and return a given string        *
  ************************************************/
 
-
 /* includes */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-
 /* declarations */
-char *ReverseString(char *);
-void RemoveTrailingNewLine(char *);
+char *reverse_string(char *);
+void remove_trailing_newline(char *);
 
 /* main / wrapper function */
 int main()
@@ -23,8 +21,8 @@ int main()
     printf("Enter some string: ");
     fgets(some_string, 255, stdin);
 
-    RemoveTrailingNewLine(some_string);
-    printf("%s%s\n", some_string, ReverseString(some_string));
+    remove_trailing_newline(some_string);
+    printf("%s%s\n", some_string, reverse_string(some_string));
 
     return 0;
 }
@@ -32,9 +30,9 @@ int main()
 
 /* definitions */
 /* reverse a given string */
-char *ReverseString(char *some_string)
+char *reverse_string(char *some_string)
 {
-    int string_length = strlen(some_string) - 1;
+    const int string_length = strlen(some_string) - 1;
     int reverse_counter = string_length - 1;
     char *reverse_string = (char *) malloc(string_length * sizeof(char));
 
@@ -49,7 +47,7 @@ char *ReverseString(char *some_string)
 
 
 /* removes a trailing newline created by fgets() */
-void RemoveTrailingNewLine(char *some_string)
+void remove_trailing_newline(char *some_string)
 {
     some_string[strcspn(some_string, "\n")] = 0;
 }

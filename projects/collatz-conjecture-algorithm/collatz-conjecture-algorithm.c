@@ -9,32 +9,25 @@
  *      until n equals 1                        *
  ************************************************/
 
-
 /* includes */
 #include <stdio.h>
 
-
 /* declarations */
-int ColConAlgo(unsigned int number);
-
+int col_con_algo(unsigned int number);
 
 /* main / wrapper function */
 int main()
 {   
-    /* user input */
-    int number = 0;
     printf("COLLATZ CONJENCTURE ALGORITHM\n\n");
-    printf("Please enter a number(n > 1): ");
-    scanf("%d", &number);
-    printf("\n");
-
+        
     /* run algorithm and show results */
-    int steps = ColConAlgo(number);
+    const int number = 0;
+    const int steps = col_con_algo(number);
+    
     printf("It took %d steps to complete the algorithm.\n", steps);
 
     return 0;
 }
-
 
 /* collatz conjecture algorithm */
 int ColConAlgo(unsigned int number)

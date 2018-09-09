@@ -8,27 +8,27 @@
  *      print fizzbuzz                          *
  ************************************************/
 
-
 /* includes */
 #include <stdio.h>
 #include <string.h>
 
-
 /* declarations */
-void FizzBuzz(int, int);
-
+void fizzbuzz(int, int);
 
 /* main / wrapper function */
 int main()
 {
-    FizzBuzz(1, 100);
+    const int start = 1;
+    const int end = 100;
+
+    fizzbuzz(start, end);
 
     return 0;
 }
 
 
 /* definitions */
-void FizzBuzz(int start, int end)
+void fizzbuzz(const int start, const int end)
 {
     if(end < start)
     {
