@@ -20,54 +20,55 @@
  *      using the hoare partition scheme for the            *
  *      partitioning                                        * 
  ************************************************************/
- 
+
 /* includes */
+#include "../../helper-functions/array_help.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include <string.h>
-#include "../../helper-functions/array_help.h"
+#include <time.h>
 
 /* declarations */
 void quicksort(int *, int, int);
 int partitioning(int *, int, int, int);
-int pick_Median_pivot(int *, int, int);
+int pick_median_pivot(int *, int, int);
 
 /* main / wrapper function */
 int main()
 {
     printf("QUICKSORT\n\n");
-        
+
     /* create a random array of given length */
-    const int array_length = 10;
-    int *number_array = (int *) malloc(sizeof(int) * array_length);
+    const int array_length = 1000000;
+    int *number_array = (int *)malloc(sizeof(int) * array_length);
     make_random_array(number_array, array_length);
 
     /* print unsorted array */
     const int new_line = 50;
-    Print_array(number_array, array_length, new_line);
-    
+    print_array(number_array, array_length, new_line);
+    printf("\n");
+
     /* sort the array */
     quicksort(number_array, 0, array_length - 1);
-    
+
     /* print sorted array */
     print_array(number_array, array_length, new_line);
-    
+    printf("\n");
+
     free(number_array);
 
     return 0;
 }
 
-
 /* definitions */
 /* quicksort algorithm */
 void quicksort(int *number_array, const int low, const int high)
-{ 
-    if(low < high)
+{
+    if (low < high)
     {
         /* pick the pivot */
         int pivot = pick_median_pivot(number_array, low, high);
-        
+
         /* partition the array */
         pivot = partitioning(number_array, pivot, low, high);
 
@@ -77,7 +78,6 @@ void quicksort(int *number_array, const int low, const int high)
     }
 }
 
-
 /* partition the array
  * hoare partition scheme */
 int partitioning(int *number_array, const int pivot, const int low, const int high)
@@ -85,24 +85,22 @@ int partitioning(int *number_array, const int pivot, const int low, const int hi
     int i = low - 1;
     int j = high + 1;
 
-    for(;;)
+    for (;;)
     {
         /* search from left side for value bigger than the pivots value */
         do
         {
             i = i + 1;
-        }
-        while(number_array[i] < number_array[pivot]);
+        } while (number_array[i] < number_array[pivot]);
 
         /* search from rigth for value smaller than the pivots value */
-        do 
+        do
         {
             j = j - 1;
-        }
-        while(number_array[j] > number_array[pivot]);
+        } while (number_array[j] > number_array[pivot]);
 
         /* pivot is in its final position */
-        if(i >= j)
+        if (i >= j)
         {
             return j;
         }
@@ -112,23 +110,22 @@ int partitioning(int *number_array, const int pivot, const int low, const int hi
     }
 }
 
-
 /* picks pivot via median of three */
 int pick_median_pivot(int *number_array, const int low, const int high)
 {
     int middle = (low + high) / 2;
 
-    if(number_array[middle] < number_array[low])
+    if (number_array[middle] < number_array[low])
     {
         swap(&number_array[low], &number_array[middle]);
     }
 
-    if(number_array[high] < number_array[low])
+    if (number_array[high] < number_array[low])
     {
         swap(&number_array[low], &number_array[high]);
     }
-    
-    if(number_array[middle] < number_array[high])
+
+    if (number_array[middle] < number_array[high])
     {
         swap(&number_array[middle], &number_array[high]);
     }
