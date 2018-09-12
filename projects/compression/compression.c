@@ -66,6 +66,8 @@ void run_length_encode(const char *dec_string, char *enc_string)
 /* decode string using run-length algorithm */
 void run_length_decode(const char *enc_string, char *dec_string)
 {
+    /* IN PROGRESS */
+
     const int length = strlen(enc_string);
 
     for (int i = 0; i < length; ++i)
