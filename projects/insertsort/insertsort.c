@@ -7,21 +7,20 @@
  ************************************************************/
 
 /* includes */
+#include "../../helper-functions/array_help.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../helper-functions/array_help.h"
 
 /* declarations */
-void insertsort(int *, int );
-
+void insertsort(int *, int);
 
 /* main / wrapper function */
 int main()
-{   
+{
     const int length = 100000;
-    int *some_array = (int *) malloc(sizeof(int) * length);
+    int *some_array = (int *)malloc(sizeof(int) * length);
     make_random_array(some_array, length);
-    
+
     const int new_line = 25;
     print_array(some_array, length, new_line);
     insertsort(some_array, length);
@@ -32,19 +31,18 @@ int main()
     return 0;
 }
 
-
 /* definitions */
 /* run insertion sort algorithm */
 void insertsort(int *some_array, const int array_length)
 {
     int counter_one = 1;
 
-    while(counter_one < array_length)
+    while (counter_one < array_length)
     {
         int counter_two = counter_one;
 
-        while(counter_two > 0 &&
-                some_array[counter_two - 1] > some_array[counter_two])
+        while (counter_two > 0 &&
+               some_array[counter_two - 1] > some_array[counter_two])
         {
             swap(&some_array[counter_two], &some_array[counter_two - 1]);
             counter_two = counter_two - 1;

@@ -17,13 +17,13 @@ int col_con_algo(unsigned int number);
 
 /* main / wrapper function */
 int main()
-{   
+{
     printf("COLLATZ CONJENCTURE ALGORITHM\n\n");
-        
+
     /* run algorithm and show results */
     const int number = 0;
     const int steps = col_con_algo(number);
-    
+
     printf("It took %d steps to complete the algorithm.\n", steps);
 
     return 0;
@@ -33,7 +33,7 @@ int main()
 int ColConAlgo(unsigned int number)
 {
     /* input number has to be bigger than one */
-    if(number < 2)
+    if (number < 2)
     {
         return -1;
     }
@@ -41,10 +41,10 @@ int ColConAlgo(unsigned int number)
     /* the actual algorithm */
     int counter = 0;
     unsigned int number_copy = number;
-    
+
     do
     {
-        if(number_copy % 2 == 0)
+        if (number_copy % 2 == 0)
         {
             number_copy = number_copy / 2;
         }
@@ -52,10 +52,9 @@ int ColConAlgo(unsigned int number)
         {
             number_copy = number_copy * 3 + 1;
         }
-        
+
         counter = counter + 1;
-    }
-    while(number_copy != 1);
+    } while (number_copy != 1);
 
     return counter;
 }

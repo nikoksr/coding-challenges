@@ -6,8 +6,8 @@
 
 /* includes */
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* declarations */
 char *reverse_string(char *);
@@ -27,16 +27,15 @@ int main()
     return 0;
 }
 
-
 /* definitions */
 /* reverse a given string */
 char *reverse_string(char *some_string)
 {
     const int string_length = strlen(some_string) - 1;
     int reverse_counter = string_length - 1;
-    char *reverse_string = (char *) malloc(string_length * sizeof(char));
+    char *reverse_string = (char *)malloc(string_length * sizeof(char));
 
-    for(int i = 0; i < string_length; ++i)
+    for (int i = 0; i < string_length; ++i)
     {
         reverse_string[i] = some_string[reverse_counter];
         reverse_counter = reverse_counter - 1;
@@ -44,7 +43,6 @@ char *reverse_string(char *some_string)
 
     return reverse_string;
 }
-
 
 /* removes a trailing newline created by fgets() */
 void remove_trailing_newline(char *some_string)

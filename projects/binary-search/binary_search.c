@@ -30,7 +30,7 @@ int main()
 {
     /* create sorted array */
     const int length = 9;
-    int *number_array = (int *) malloc(sizeof(int) * length);
+    int *number_array = (int *)malloc(sizeof(int) * length);
     make_sorted_array(number_array, length);
 
     /* pint array */
@@ -40,9 +40,9 @@ int main()
     /* start binary search */
     const int searched_value = 7;
     const int result = binary_search(number_array, 0, (length - 1), searched_value);
-   
+
     /* evaluate result from binary search */
-    evaluate_search_result(result, searched_value); 
+    evaluate_search_result(result, searched_value);
 
     free(number_array);
     return 0;
@@ -54,19 +54,19 @@ int main()
  * */
 int binary_search(int *number_array, int low, int high, const int searched_value)
 {
-    if(high < low)
+    if (high < low)
     {
         return -1;
     }
-    
+
     int center = ((high + low) / 2);
 
-    if(searched_value == number_array[center])
+    if (searched_value == number_array[center])
     {
-        return center; 
+        return center;
     }
 
-    if(searched_value < number_array[center])
+    if (searched_value < number_array[center])
     {
         high = center - 1;
     }
@@ -74,19 +74,19 @@ int binary_search(int *number_array, int low, int high, const int searched_value
     {
         low = center + 1;
     }
-    
+
     return binary_search(number_array, low, high, searched_value);
 }
 
 /* evaluate the result from a binary search */
 void evaluate_search_result(const int result, const int searched_value)
 {
-    switch(result)
+    switch (result)
     {
-        case -1:
-            printf("Value not found.\n");
-            break;
-        default:
-            printf("Value %d found at index %d\n", searched_value, result);
+    case -1:
+        printf("Value not found.\n");
+        break;
+    default:
+        printf("Value %d found at index %d\n", searched_value, result);
     }
 }

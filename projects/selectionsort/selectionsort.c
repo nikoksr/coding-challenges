@@ -8,12 +8,10 @@
  * -> these steps are repeated until array is fully sorted  *
  ************************************************************/
 
-
 /* includes */
+#include "../../helper-functions/array_help.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../helper-functions/array_help.h"
-
 
 /* declarations */
 int find_smallest_value(int *, int, int);
@@ -23,10 +21,10 @@ void selection_sort(int *, int);
 int main()
 {
     printf("SELECTION-SORT\n\n");
-    
+
     /* create a random array of given length */
     const int length = 100000;
-    int *number_array = (int *) malloc(sizeof(int) * length);
+    int *number_array = (int *)malloc(sizeof(int) * length);
     MakeRandomArray(number_array, length);
 
     /* print unsorted array */
@@ -44,7 +42,6 @@ int main()
     return 0;
 }
 
-
 /* definitions */
 /* finds smallest value in array and returns its index */
 int find_smallest_value(int *number_array, const int length, const int index)
@@ -52,9 +49,9 @@ int find_smallest_value(int *number_array, const int length, const int index)
     int smallest = index;
     int i;
 
-    for(i = (index + 1); i < length; ++i)
+    for (i = (index + 1); i < length; ++i)
     {
-        if(number_array[i] < number_array[smallest])
+        if (number_array[i] < number_array[smallest])
         {
             smallest = i;
         }
@@ -63,16 +60,15 @@ int find_smallest_value(int *number_array, const int length, const int index)
     return smallest;
 }
 
-
 /* selctionsort algorithm */
 void selection_sort(int *number_array, const int length)
 {
     int smallest;
 
-    for(int i = 0; i < length; ++i)
+    for (int i = 0; i < length; ++i)
     {
         smallest = find_smallest_value(number_array, length, i);
-        if(number_array[smallest] < number_array[i])
+        if (number_array[smallest] < number_array[i])
         {
             Swap(&number_array[smallest], &number_array[i]);
         }

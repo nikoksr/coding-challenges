@@ -28,7 +28,7 @@ int main()
 
     int gcd = greatest_common_divisor(num_one, num_two);
     printf("%d\n", gcd);
-    
+
     return 0;
 }
 
@@ -38,7 +38,7 @@ int main()
  * */
 void sort_bigger_smaller(int *num_one, int *num_two)
 {
-    if(*num_one < *num_two)
+    if (*num_one < *num_two)
     {
         int temp = *num_one;
         *num_one = *num_two;
@@ -53,7 +53,7 @@ int euclidian_algo(int bigger, int smaller)
     int remainder = bigger % smaller;
     int old_remainder;
 
-    while(remainder > 1)
+    while (remainder > 1)
     {
         old_remainder = remainder;
         bigger = smaller;
@@ -61,11 +61,11 @@ int euclidian_algo(int bigger, int smaller)
         remainder = bigger % smaller;
     }
 
-    if(remainder == 0)
+    if (remainder == 0)
     {
         return old_remainder;
     }
-    
+
     return 1;
 }
 
@@ -73,7 +73,7 @@ int euclidian_algo(int bigger, int smaller)
 int greatest_common_divisor(const int num_one, const int num_two)
 {
     /* catch case where numbers are equal */
-    if(num_one == num_two)
+    if (num_one == num_two)
     {
         return num_one;
     }
@@ -84,10 +84,10 @@ int greatest_common_divisor(const int num_one, const int num_two)
     int bigger = num_one;
     int smaller = num_two;
 
-    sort_bigger_smaller(&bigger, &smaller);    
-  
+    sort_bigger_smaller(&bigger, &smaller);
+
     /* catch case where the smaller value is the BCD */
-    if(bigger % smaller == 0)
+    if (bigger % smaller == 0)
     {
         return smaller;
     }

@@ -26,29 +26,28 @@ int main()
     return 0;
 }
 
-
 /* definitions */
 void fizzbuzz(const int start, const int end)
 {
-    if(end < start)
+    if (end < start)
     {
         printf("Invalid values.\n");
         return;
     }
 
-    for(int i = start; i <= end; ++i)
+    for (int i = start; i <= end; ++i)
     {
         char output[8 + 1];
 
-        if(i % 3 == 0 && i % 5 == 0)
+        if (i % 3 == 0 && i % 5 == 0)
         {
             strcpy(output, "FizzBuzz");
         }
-        else if(i % 3 == 0)
+        else if (i % 3 == 0)
         {
             strcpy(output, "Fizz");
         }
-        else if(i % 5 == 0)
+        else if (i % 5 == 0)
         {
             strcpy(output, "Buzz");
         }
