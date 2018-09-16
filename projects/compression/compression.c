@@ -24,27 +24,18 @@ void run_length_decode(struct compressed_string *compr_strg, char *uncompr_strin
 /* main / wrapper function */
 int main()
 {
-    const int length = 30;
+    /* string to compress */
+    const int length = 5;
     char *some_string = (char *)malloc(sizeof(char) * length);
-    strcpy(some_string, "aaabbbbbcdddddddddd");
+    strcpy(some_string, "abcd");
 
+    /* compressed string */
     struct compressed_string compr_strg;
-
     run_length_encode(some_string, &compr_strg);
-    printf("%s -> ", some_string);
 
-    int strg_len = strlen(compr_strg.letters);
-
-    for (int i = 0; i < strg_len; ++i)
-    {
-        printf("%c%d", compr_strg.letters[i], compr_strg.counts[i]);
-    }
-
-    printf("\n");
-
+    /* uncompress string */
     char *dec_string = (char *)malloc(sizeof(char) * length);
     run_length_decode(&compr_strg, dec_string);
-    printf("%s\n", dec_string);
 
     free(some_string);
 
@@ -56,21 +47,21 @@ int main()
 void run_length_encode(const char *uncompr_string, struct compressed_string *compr_strg)
 {
     const int length = strlen(uncompr_string);
-    char letter;
-    int letter_counter;
     int compr_strg_counter = 0;
 
     for (int i = 0; i < length; ++i)
     {
-        letter = uncompr_string[i];
-        letter_counter = 1;
+        char letter = uncompr_string[i];
+        int letter_counter = 1;
 
+        /* count consecutive occurence of character */
         while (uncompr_string[i] == uncompr_string[i + 1])
         {
             ++letter_counter;
             ++i;
         }
 
+        /* write character and amount of consecutive occurences in arrays */
         compr_strg->letters[compr_strg_counter] = letter;
         compr_strg->counts[compr_strg_counter] = letter_counter;
         ++compr_strg_counter;
@@ -85,8 +76,8 @@ void run_length_decode(struct compressed_string *compr_strg, char *uncompressed_
     for (int i = 0; i < length; ++i)
     {
         int n = compr_strg->counts[i];
-        char letter = compr_strg->letters[i];
         char letters[n + 1];
+        char letter = compr_strg->letters[i];
 
         for (int j = 0; j < n; ++j)
         {
@@ -94,13 +85,6 @@ void run_length_decode(struct compressed_string *compr_strg, char *uncompressed_
         }
 
         letters[n] = '\0';
-
-        if (strlen(uncompressed_string) < 1)
-        {
-            strcpy(uncompressed_string, letters);
-            continue;
-        }
-
         strcat(uncompressed_string, letters);
     }
 }
