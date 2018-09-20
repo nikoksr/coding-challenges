@@ -5,6 +5,7 @@ List of small coding projects / challenges - done for practice and fun
 
 Project Overview
 ================
+* Armstrong Numbers
 * Binary Search
 * Bubblesort
 * Change Return
@@ -19,6 +20,7 @@ Project Overview
 * Quicksort
 * Reverse String
 * Selectionsort
+
 
 Additional Informations
 =======================
