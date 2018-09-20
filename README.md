@@ -14,6 +14,7 @@ Project Overview
 * Euclidian Algorithm
 * Fibonacci
 * FizzBuzz
+* Heap Permutation
 * Insertsort
 * Happy Numbers
 * Pig Latin
