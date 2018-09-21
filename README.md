@@ -12,6 +12,7 @@ Project Overview
 * Collatz-Conjecture Algorithm
 * Compression
 * Euclidian Algorithm
+* Fermat's Little Theorem
 * Fibonacci
 * FizzBuzz
 * Heap Permutation
