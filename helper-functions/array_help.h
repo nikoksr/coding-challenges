@@ -2,15 +2,15 @@
 #define HELPER_FUNCS_H
 
 /* make an array of given length filled with random values */
-void make_random_array(int *random_array, const int array_length);
+void make_random_array(int* random_array, const int array_length);
 
 /* make an array of given length filled with sorted values */
-void make_sorted_array(int *sorted_array, const int array_length);
+void make_sorted_array(int* sorted_array, const int array_length);
 
 /* print an array */
-void print_array(int *some_array, const int array_length, const int new_line);
+void print_array(int* some_array, const int array_length, const int new_line);
 
 /* swap the values of two integer variables */
-void swap(int *var_one, int *var_two);
+void swap(int* var_one, int* var_two);
 
 #endif /* HELPER_FUNCS_H */

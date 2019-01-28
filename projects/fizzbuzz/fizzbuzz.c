@@ -16,46 +16,35 @@
 void fizzbuzz(int, int);
 
 /* main / wrapper function */
-int main()
-{
-    const int start = 1;
-    const int end = 100;
+int main() {
+  const int start = 1;
+  const int end = 100;
 
-    fizzbuzz(start, end);
+  fizzbuzz(start, end);
 
-    return 0;
+  return 0;
 }
 
 /* definitions */
-void fizzbuzz(const int start, const int end)
-{
-    if (end < start)
-    {
-        printf("Invalid values.\n");
-        return;
+void fizzbuzz(const int start, const int end) {
+  if (end < start) {
+    printf("Invalid values.\n");
+    return;
+  }
+
+  for (int i = start; i <= end; ++i) {
+    char output[8 + 1];
+
+    if (i % 3 == 0 && i % 5 == 0) {
+      strcpy(output, "FizzBuzz");
+    } else if (i % 3 == 0) {
+      strcpy(output, "Fizz");
+    } else if (i % 5 == 0) {
+      strcpy(output, "Buzz");
+    } else {
+      sprintf(output, "%d", i);
     }
 
-    for (int i = start; i <= end; ++i)
-    {
-        char output[8 + 1];
-
-        if (i % 3 == 0 && i % 5 == 0)
-        {
-            strcpy(output, "FizzBuzz");
-        }
-        else if (i % 3 == 0)
-        {
-            strcpy(output, "Fizz");
-        }
-        else if (i % 5 == 0)
-        {
-            strcpy(output, "Buzz");
-        }
-        else
-        {
-            sprintf(output, "%d", i);
-        }
-
-        printf("%s\n", output);
-    }
+    printf("%s\n", output);
+  }
 }
