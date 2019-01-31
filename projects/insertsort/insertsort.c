@@ -12,38 +12,38 @@
 #include "../../helper-functions/array_help.h"
 
 /* declarations */
-void insertsort(int*, int);
+void insertsort(int* arr, const unsigned int arr_len);
 
 /* main / wrapper function */
 int main() {
-  const int length = 100000;
+  /* create random array of some length */
+  const unsigned int length = 100000;
   int* some_array = (int*)malloc(sizeof(int) * length);
   make_random_array(some_array, length);
 
-  const int new_line = 25;
+  /* run insertsort against array */
+  const unsigned int new_line = 25;
   print_array(some_array, length, new_line);
   insertsort(some_array, length);
   print_array(some_array, length, new_line);
-
   free(some_array);
-
   return 0;
 }
 
 /* definitions */
 /* run insertion sort algorithm */
-void insertsort(int* some_array, const int array_length) {
-  int counter_one = 1;
+void insertsort(int* arr, const unsigned int arr_len) {
+  unsigned int counter_one = 1;
 
-  while (counter_one < array_length) {
-    int counter_two = counter_one;
+  while (counter_one < arr_len) {
+    unsigned int counter_two = counter_one;
 
     while (counter_two > 0 &&
-           some_array[counter_two - 1] > some_array[counter_two]) {
-      swap(&some_array[counter_two], &some_array[counter_two - 1]);
-      counter_two = counter_two - 1;
+           arr[counter_two - 1] > arr[counter_two]) {
+      swap(&arr[counter_two], &arr[counter_two - 1]);
+      counter_two--;
     }
 
-    counter_one = counter_one + 1;
+    counter_one++;
   }
 }
