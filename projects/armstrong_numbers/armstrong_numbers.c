@@ -1,5 +1,5 @@
 /************************************************************
- * armstrong numbers                                        *
+ * armstring numbers                                        *
  *                                                          *
  * -> Given is a number of three digits                     *
  * -> An armstrong number itself is equal to the cubes of   *
@@ -15,16 +15,16 @@
 #include <string.h>
 
 /* declarations */
-int is_armstrong_number(const int number);
-void print_result(const int number, const int result);
+int is_armstrong_number(const unsigned int num);
+void print_result(const unsigned int num, const unsigned int result);
 
 /* main / wrapper function */
 int main() {
   printf("ARMSTRONG NUMBER\n\n");
 
-  const int number = 153;
-  const int result = is_armstrong_number(number);
-  print_result(number, result);
+  const unsigned int num = 153;
+  const unsigned int result = is_armstrong_number(num);
+  print_result(num, result);
 
   return 0;
 }
@@ -33,22 +33,22 @@ int main() {
 /* function to check if a number is an armstrong number
  * returns 1 if true, returns 0 if false, returns -1 if error
  */
-int is_armstrong_number(const int number) {
-  if (number < 0) {
+int is_armstrong_number(const unsigned int num) {
+  if (num < 0) {
     return -1;
   }
 
-  int num = number;
-  int armstrong = 0;
-  int number_of_digits = floor(log10(abs(num))) + 1;
+  unsigned int n = num;
+  unsigned int armstrong = 0;
+  const unsigned int number_of_digits = floor(log10(num)) + 1;
 
   while (num > 0) {
-    int digit = num % 10;
-    num = num / 10;
-    armstrong = armstrong + pow(digit, number_of_digits);
+    unsigned int digit = num % 10;
+    n /= 10;
+    armstrong += pow(digit, number_of_digits);
   }
 
-  if (armstrong == number) {
+  if (armstrong == n) {
     return 1;
   }
 
@@ -56,7 +56,7 @@ int is_armstrong_number(const int number) {
 }
 
 /* print the result */
-void print_result(const int number, const int result) {
+void print_result(const unsigned int num, const unsigned int result) {
   char result_text[24];
 
   switch (result) {
@@ -74,5 +74,5 @@ void print_result(const int number, const int result) {
       break;
   }
 
-  printf("%d -> %s\n", number, result_text);
+  printf("%d -> %s\n", num, result_text);
 }
