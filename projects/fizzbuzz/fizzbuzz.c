@@ -13,7 +13,7 @@
 #include <string.h>
 
 /* declarations */
-void fizzbuzz(int, int);
+void fizzbuzz(const unsigned int start, const unsigned int end);
 
 /* main / wrapper function */
 int main() {
@@ -26,23 +26,29 @@ int main() {
 }
 
 /* definitions */
-void fizzbuzz(const int start, const int end) {
+void fizzbuzz(const unsigned int start, const unsigned int end) {
   if (end < start) {
     printf("Invalid values.\n");
     return;
   }
 
-  for (int i = start; i <= end; ++i) {
-    char output[8 + 1];
+  for (unsigned int i = start; i <= end; ++i) {
+    char output[9];
+    output[0] = '\0';
 
-    if (i % 3 == 0 && i % 5 == 0) {
-      strcpy(output, "FizzBuzz");
-    } else if (i % 3 == 0) {
-      strcpy(output, "Fizz");
-    } else if (i % 5 == 0) {
-      strcpy(output, "Buzz");
-    } else {
-      sprintf(output, "%d", i);
+    /* Check for fizz and buzz first. If both than buzz gets appended to buzz. */
+    if(i % 3 == 0) {
+      strcat(output, "Fizz");
+    }
+    if(i % 5 == 0) {
+      strcat(output, "Buzz");
+    }
+
+    /* Check if number was fizz, buzz or both. If not print the number. */
+    const unsigned len = (unsigned int)strlen(output);
+
+    if(len < 1) {
+      sprintf(output, "%u", i);
     }
 
     printf("%s\n", output);
