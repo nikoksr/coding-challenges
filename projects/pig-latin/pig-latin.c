@@ -18,27 +18,28 @@
 #include <string.h>
 
 /* declarations */
-char* piglatin(char*);
-int is_letter_a_vowel(char);
-int index_of_first_vowel(char*);
-void remove_trailing_newline(char*);
+char* piglatin(char* some_string);
+int is_letter_a_vowel(const char letter);
+int index_of_first_vowel(char* some_string);
+void remove_trailing_newline(char* some_string);
 
 /* main / wrapper function */
 int main() {
+  /* Read in some string */
   char some_string[255];
 
   printf(
       "PIG LATIN\n\n"
       "Enter a string: ");
   fgets(some_string, 255, stdin);
-
   remove_trailing_newline(some_string);
 
-  if (some_string == NULL || strlen(some_string) < 1) {
+  if (strlen(some_string) < 1) {
     printf("Warning: No valid input.\n");
-    return -1;
+    return 1;
   }
 
+  /* run piglatin against string */
   char* pig_latin_string = piglatin(some_string);
   printf("%s - %s\n", some_string, pig_latin_string);
 
@@ -53,14 +54,15 @@ int main() {
 /* definitions */
 /* pig latin wrapper function */
 char* piglatin(char* some_string) {
-  int vowel_index = index_of_first_vowel(some_string);
+  /* look for vowel in string */
+  const int vowel_index = index_of_first_vowel(some_string);
 
   /* string doesn't contain a vowel */
   if (vowel_index == -1) {
     return some_string;
   }
 
-  const int string_length = strlen(some_string) - 1;
+  const unsigned int string_length = (unsigned int)strlen(some_string) - 1;
   char* pig_string = (char*)malloc(string_length * sizeof(some_string[0]));
 
   /* first letter is a vowel */
@@ -91,8 +93,8 @@ char* piglatin(char* some_string) {
 /* check if a letter / char is a vowel */
 int is_letter_a_vowel(const char letter) {
   const char vowels[] = {'a', 'e', 'i', 'o', 'u'};
-  const int amount_vowels = strlen(vowels);
-  int index = 0;
+  const unsigned int amount_vowels = (unsigned int)strlen(vowels);
+  unsigned int index = 0;
 
   while (vowels[index] != letter) {
     if (index + 1 == amount_vowels) {
@@ -107,15 +109,15 @@ int is_letter_a_vowel(const char letter) {
 
 /* return the index of the first found vowel */
 int index_of_first_vowel(char* some_string) {
-  const int string_length = strlen(some_string);
-  int index = 0;
+  const unsigned int string_length = strlen(some_string);
+  unsigned int index = 0;
 
   while (is_letter_a_vowel(some_string[index]) != 1) {
     if (index + 1 == string_length) {
       return -1;
     }
 
-    index = index + 1;
+    index++;
   }
 
   return index;
