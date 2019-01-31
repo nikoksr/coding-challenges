@@ -14,7 +14,7 @@
 #include "../../helper-functions/array_help.h"
 
 /* declarations */
-void bubblesort(int*, int);
+void bubblesort(int* some_array, const unsigned int array_length);
 
 /* main / wrapper function */
 int main() {
@@ -27,7 +27,6 @@ int main() {
 
   /* print unsorted array */
   const int new_line = 50;
-
   print_array(number_array, array_length, new_line);
 
   /* sort the array */
@@ -35,16 +34,14 @@ int main() {
 
   /* print sorted array */
   print_array(number_array, array_length, new_line);
-
   free(number_array);
-
   return 0;
 }
 
 /* definitions */
 /* bubblesort algorithm */
-void bubblesort(int* some_array, const int array_length) {
-  for (int i = 0; i < array_length - 1; ++i) {
+void bubblesort(int* some_array, const unsigned int array_length) {
+  for (unsigned int i = 0; i < array_length - 1; ++i) {
     /* if element bigger than following element -> swap them
      * and start again at first element
      * */
