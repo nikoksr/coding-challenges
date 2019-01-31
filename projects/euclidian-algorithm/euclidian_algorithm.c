@@ -16,18 +16,16 @@
 #include <stdio.h>
 
 /* declarations */
-void sort_bigger_smaller(int* num_one, int* num_two);
+void sort_bigger_smaller(unsigned int* num_one, unsigned int* num_two);
 int euclidian_algo(int bigger, int smaller);
 int greatest_common_divisor(const int num_one, const int num_two);
 
 /* main / wrapper function */
 int main() {
-  const int num_one = 120;
-  const int num_two = 180;
-
-  int gcd = greatest_common_divisor(num_one, num_two);
+  const unsigned int num_one = 120;
+  const unsigned int num_two = 180;
+  const unsigned int gcd = greatest_common_divisor(num_one, num_two);
   printf("%d\n", gcd);
-
   return 0;
 }
 
@@ -35,9 +33,9 @@ int main() {
 /* make num_one the bigger equal the bigger number
  * and num_two equal the smaller number
  * */
-void sort_bigger_smaller(int* num_one, int* num_two) {
+void sort_bigger_smaller(unsigned int* num_one, unsigned int* num_two) {
   if (*num_one < *num_two) {
-    int temp = *num_one;
+    unsigned int temp = *num_one;
     *num_one = *num_two;
     *num_two = temp;
   }
@@ -46,8 +44,8 @@ void sort_bigger_smaller(int* num_one, int* num_two) {
 /* the actual algorithm */
 int euclidian_algo(int bigger, int smaller) {
   /* actual algorithm */
-  int remainder = bigger % smaller;
-  int old_remainder;
+  unsigned int remainder = bigger % smaller;
+  unsigned int old_remainder;
 
   while (remainder > 1) {
     old_remainder = remainder;
@@ -73,9 +71,8 @@ int greatest_common_divisor(const int num_one, const int num_two) {
   /* sort values
    * variables used for better understanding
    * */
-  int bigger = num_one;
-  int smaller = num_two;
-
+  unsigned int bigger = num_one;
+  unsigned int smaller = num_two;
   sort_bigger_smaller(&bigger, &smaller);
 
   /* catch case where the smaller value is the BCD */
@@ -83,7 +80,5 @@ int greatest_common_divisor(const int num_one, const int num_two) {
     return smaller;
   }
 
-  int result_euc = euclidian_algo(bigger, smaller);
-
-  return result_euc;
+  return euclidian_algo(bigger, smaller);
 }
