@@ -5,7 +5,7 @@
  *  -> replace the number with the sum          *
  *      of the squares of its digits            *
  *  -> repeat until the number equals 1         *
- *      or it loops endlessly                   *
+ *      or break if it loops endlessly          *
  *                                              *
  ************************************************/
 
@@ -15,17 +15,17 @@
 #include <stdlib.h>
 
 /* declarations */
-int is_happy_number(int);
-int is_in_array(int, int*, int);
-unsigned int sum_digits(int);
+unsigned int is_happy_number(unsigned int num);
+unsigned int is_in_array(const unsigned int num, unsigned int* num_arr, const unsigned int arr_len);
+unsigned int sum_digits(unsigned int num);
 
 /* main / wrapper function */
 int main() {
   printf("HAPPY NUMBERS\n\n");
 
   /* calculate and evaluate */
-  const int number = 10;
-  const int result = is_happy_number(number);
+  const unsigned int number = 10;
+  const unsigned int result = is_happy_number(number);
 
   switch (result) {
     case 1:
@@ -45,26 +45,26 @@ int main() {
 }
 
 /* check if a given number is a happy number */
-int is_happy_number(int number) {
-  const int array_length = 255;
-  int* number_array = (int*)malloc(sizeof(int) * array_length);
-  int counter = 0;
+unsigned int is_happy_number(unsigned int num) {
+  const unsigned int arr_len = 255;
+  unsigned int* num_arr = (unsigned int*)malloc(sizeof(unsigned int) * arr_len);
+  unsigned int counter = 0;
 
   /* while the number is > 1 and was not found previously (loop) - keep
    * calculating */
-  while (number > 1 && is_in_array(number, number_array, array_length) == 0) {
+  while (num > 1 && is_in_array(num, num_arr, arr_len) == 0) {
     /* overwrite array to prevent overflow */
-    if (counter > (array_length - 1)) {
+    if (counter > (arr_len - 1)) {
       counter = 0;
     }
 
-    number_array[counter] = number;
-    number = sum_digits(number);
-    counter = counter + 1;
+    num_arr[counter] = num;
+    num = sum_digits(num);
+    counter++;
   }
 
   /* is a happy number */
-  if (number == 1) {
+  if (num == 1) {
     return 1;
   }
 
@@ -73,9 +73,9 @@ int is_happy_number(int number) {
 }
 
 /* checks an array of numbers if a given number is already in it */
-int is_in_array(const int number, int* number_array, const int array_length) {
-  for (int i = 0; i < array_length; i++) {
-    if (number_array[i] == number) {
+unsigned int is_in_array(const unsigned int num, unsigned int* num_arr, const unsigned int arr_len) {
+  for (unsigned int i = 0; i < arr_len; i++) {
+    if (num_arr[i] == num) {
       /* number found in array */
       return 1;
     }
@@ -86,13 +86,13 @@ int is_in_array(const int number, int* number_array, const int array_length) {
 }
 
 /* return sum of digits of a given integer */
-unsigned int sum_digits(int number) {
+unsigned int sum_digits(unsigned int num) {
   unsigned int sum = 0;
 
-  while (number > 0) {
-    unsigned int digit = number % 10;
-    number = number / 10;
-    sum = sum + (digit * digit);
+  while (num > 0) {
+    const unsigned int digit = num % 10;
+    num /= 10;
+    sum += (digit * digit);
   }
 
   return sum;
