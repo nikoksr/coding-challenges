@@ -10,38 +10,45 @@
 #include <string.h>
 
 /* declarations */
-char* reverse_string(char*);
-void remove_trailing_newline(char*);
+void reverse_string(char* str);
+void remove_trailing_newline(char* str);
 
 /* main / wrapper function */
 int main() {
-  char some_string[255];
-
+  /* read in a string */
+  const unsigned int max_len = 255;
+  char str[max_len];
   printf("Enter some string: ");
-  fgets(some_string, 255, stdin);
+  fgets(str, max_len, stdin);
+  remove_trailing_newline(str);
 
-  remove_trailing_newline(some_string);
-  printf("%s%s\n", some_string, reverse_string(some_string));
+  /* keep copy of unreverted string */
+  char old_str[max_len];
+  strcpy(old_str, str);
 
+  /* revert string */
+  reverse_string(str);
+  printf("%s -> %s\n", old_str, str);
   return 0;
 }
 
 /* definitions */
 /* reverse a given string */
-char* reverse_string(char* some_string) {
-  const int string_length = strlen(some_string) - 1;
-  int reverse_counter = string_length - 1;
-  char* reverse_string = (char*)malloc(string_length * sizeof(char));
+void reverse_string(char* str) {
+  const unsigned int str_len = strlen(str);
+  unsigned int reverse_counter = str_len - 1;
+  char reverse_str[str_len];
 
-  for (int i = 0; i < string_length; ++i) {
-    reverse_string[i] = some_string[reverse_counter];
-    reverse_counter = reverse_counter - 1;
+  for (unsigned int i = 0; i < str_len; ++i) {
+    reverse_str[i] = str[reverse_counter];
+    reverse_counter--;
   }
 
-  return reverse_string;
+  reverse_str[str_len] = '\0';
+  strcpy(str, reverse_str);
 }
 
 /* removes a trailing newline created by fgets() */
-void remove_trailing_newline(char* some_string) {
-  some_string[strcspn(some_string, "\n")] = 0;
+void remove_trailing_newline(char* str) {
+  str[strcspn(str, "\n")] = 0;
 }
