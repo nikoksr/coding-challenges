@@ -1,5 +1,5 @@
 /************************************************************
- * armstring numbers                                        *
+ * armstrong numbers                                        *
  *                                                          *
  * -> Given is a number of three digits                     *
  * -> An armstrong number itself is equal to the cubes of   *
