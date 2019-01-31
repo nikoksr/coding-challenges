@@ -13,13 +13,13 @@
 #include <stdio.h>
 
 /* declarations */
-float difference(float, float);
-void change_return(float, float);
+float difference(const float value_one, const float value_two);
+void change_return(const float price, float money_payed);
 
 /* main / wrapper function */
 int main() {
   /* take in price and the payed money and
-   * calculate the difference
+   * calculate the change return
    * */
   float price, money_payed;
 
@@ -34,8 +34,8 @@ int main() {
 }
 
 /* definitions */
-/* calculate the rounded difference o between two values */
-float difference(float value_one, float value_two) {
+/* calculate the rounded difference between two values */
+float difference(const float value_one, const float value_two) {
   return (roundf((value_one - value_two) * 100) / 100);
 }
 
@@ -51,7 +51,7 @@ void change_return(const float price, float money_payed) {
     printf("Additional money(EUR): ");
     scanf("%f", &additional_money);
 
-    money_payed = money_payed + additional_money;
+    money_payed += additional_money;
     diff = difference(money_payed, price);
   }
 
@@ -59,7 +59,7 @@ void change_return(const float price, float money_payed) {
   const float MONEY[] = {500.0, 200.0, 100.0, 50.0, 20.0, 10.0, 5.0, 2.0,
                          1.0,   0.5,   0.2,   0.1,  0.05, 0.02, 0.01};
 
-  const int amount_of_money_types = sizeof(MONEY) / sizeof(MONEY[0]);
+  const unsigned int amount_of_money_types = sizeof(MONEY) / sizeof(MONEY[0]);
 
   /* money to return */
   float return_money[amount_of_money_types];
@@ -67,7 +67,7 @@ void change_return(const float price, float money_payed) {
   /* calculate the exact payback money
    * how many of every coin and banknote
    * */
-  for (int i = 0; i < 15; i++) {
+  for (unsigned int i = 0; i < amount_of_money_types; i++) {
     return_money[i] = floorf(diff / MONEY[i]);
     diff = difference(diff, (return_money[i] * MONEY[i]));
 
@@ -79,7 +79,7 @@ void change_return(const float price, float money_payed) {
   /* print change return */
   printf("Here is your change: \n");
 
-  for (int j = 0; j < 15; j++) {
+  for (unsigned int j = 0; j < amount_of_money_types; j++) {
     if (return_money[j] >= 1) {
       printf("%5.0f x %5.2f EUR\n", return_money[j], MONEY[j]);
     }
