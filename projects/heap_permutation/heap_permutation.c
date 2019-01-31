@@ -14,32 +14,32 @@
 #include "../../helper-functions/array_help.h"
 
 /* declarations */
-void heap_permutation(int* some_array, const int total_length, int length);
+void heap_permutation(int* some_array, const unsigned int total_length, const unsigned int length);
 
 /* main / wrapper function */
 int main() {
-  /* project title */
   printf("HEAP PERMUTATION\n\n");
 
-  const int length = 3;
-  int* some_array = (int*)malloc(sizeof(int) * length);
+  /* Create sorted array of some size */
+  const int len = 3;
+  int* some_array = (int*)malloc(sizeof(int) * len);
+  make_sorted_array(some_array, len);
 
-  make_sorted_array(some_array, length);
-  heap_permutation(some_array, length, length);
+  /* Run heap permutation against array */
+  heap_permutation(some_array, len, len);
   free(some_array);
-
   return 0;
 }
 
 /* definitions */
-void heap_permutation(int* some_array, const int total_length, int length) {
+void heap_permutation(int* some_array, const unsigned int total_length, const unsigned int length) {
   /* print array once length equals 1 */
   if (length == 1) {
     print_array(some_array, total_length, 25);
     return;
   }
 
-  for (int i = 0; i < length; ++i) {
+  for (unsigned int i = 0; i < length; ++i) {
     /* recursive call and decreasing length by one */
     heap_permutation(some_array, total_length, length - 1);
 
