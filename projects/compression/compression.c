@@ -1,8 +1,13 @@
 /************************************************************
- * compression                                              *
- *                                                          *
- * -> collection of algorithms to compress data             *
- * -> examples: run-length-encoding and huffman coding      *
+ * run-length encoding
+ *
+ * Run-length encoding (RLE) is a very simple form of
+ * lossless data compression in which runs of data (that
+ * is, sequences in which the same data value occurs in
+ * many consecutive data elements) are stored as a single
+ * data value and count, rather than as the original run.
+ *
+ * Example: aaabbcddd -> 3a2b1c3d
  ************************************************************/
 
 /* includes */
@@ -26,7 +31,7 @@ void print_compressed_string(struct compressed_string* compr_strg);
 /* main / wrapper function */
 int main() {
   /* string to compress */
-  const int length = 119;
+  const unsigned int length = 119;
   char* some_string = (char*)malloc(length);
   strcpy(some_string,
          "aaaaaaaaaaaaaabbbbbbbbbbbbbbbcccccccccccccdddddddddddeeeeeefffffggghh"
@@ -52,12 +57,12 @@ int main() {
 /* encode string using run-length algorithm */
 void run_length_encode(const char* uncompr_string,
                        struct compressed_string* compr_strg) {
-  const int length = strlen(uncompr_string);
-  int compr_strg_counter = 0;
+  const unsigned int length = strlen(uncompr_string);
+  unsigned int compr_strg_counter = 0;
 
-  for (int i = 0; i < length; ++i) {
+  for (unsigned int i = 0; i < length; ++i) {
     char letter = uncompr_string[i];
-    int letter_counter = 1;
+    unsigned int letter_counter = 1;
 
     /* count consecutive occurence of character */
     while (uncompr_string[i] == uncompr_string[i + 1]) {
@@ -74,20 +79,20 @@ void run_length_encode(const char* uncompr_string,
   compr_strg->letters[compr_strg_counter] = '\0';
 }
 
-/* decode string using run-length algorithm */
+/* decode run-length encoded string */
 void run_length_decode(struct compressed_string* compr_strg,
                        char* uncompressed_string) {
-  const int length = strlen(compr_strg->letters);
-  int uncompressed_length = 0;
+  const unsigned int length = strlen(compr_strg->letters);
+  unsigned int uncompressed_length = 0;
 
-  for (int i = 0; i < length; ++i) {
-    int count = compr_strg->counts[i];
+  for (unsigned int i = 0; i < length; ++i) {
+    unsigned int count = compr_strg->counts[i];
     uncompressed_length += count;
 
     char letters[count + 1];
     char letter = compr_strg->letters[i];
 
-    for (int j = 0; j < count; ++j) {
+    for (unsigned int j = 0; j < count; ++j) {
       letters[j] = letter;
     }
     letters[count] = '\0';
@@ -99,9 +104,9 @@ void run_length_decode(struct compressed_string* compr_strg,
 
 /* print the compressed string struct */
 void print_compressed_string(struct compressed_string* compr_strg) {
-  const int length = strlen(compr_strg->letters);
+  const unsigned int length = strlen(compr_strg->letters);
 
-  for (int i = 0; i < length; ++i) {
+  for (unsigned int i = 0; i < length; ++i) {
     printf("%c%d", compr_strg->letters[i], compr_strg->counts[i]);
   }
 
