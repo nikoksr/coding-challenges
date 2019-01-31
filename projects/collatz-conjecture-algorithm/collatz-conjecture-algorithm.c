@@ -6,22 +6,22 @@
  *  -> if n is odd, multiply by 3               *
  *      and add 1                               *
  *  -> how many steps does it take              *
- *      until n equals 1                        *
+ *      until n equals 1?                       *
  ************************************************/
 
 /* includes */
 #include <stdio.h>
 
 /* declarations */
-int col_con_algo(unsigned int number);
+int col_con_algo(const unsigned int number);
 
 /* main / wrapper function */
 int main() {
   printf("COLLATZ CONJENCTURE ALGORITHM\n\n");
 
   /* run algorithm and show results */
-  const int number = 0;
-  const int steps = col_con_algo(number);
+  const unsigned int number = 0;
+  const unsigned int steps = col_con_algo(number);
 
   printf("It took %d steps to complete the algorithm.\n", steps);
 
@@ -29,14 +29,14 @@ int main() {
 }
 
 /* collatz conjecture algorithm */
-int ColConAlgo(unsigned int number) {
+int col_con_algo(const unsigned int number) {
   /* input number has to be bigger than one */
   if (number < 2) {
     return -1;
   }
 
   /* the actual algorithm */
-  int counter = 0;
+  unsigned int counter = 0;
   unsigned int number_copy = number;
 
   do {
@@ -46,7 +46,7 @@ int ColConAlgo(unsigned int number) {
       number_copy = number_copy * 3 + 1;
     }
 
-    counter = counter + 1;
+    counter++;
   } while (number_copy != 1);
 
   return counter;
