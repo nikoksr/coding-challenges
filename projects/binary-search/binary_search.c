@@ -1,7 +1,7 @@
 /************************************************************
  * binary search                                            *
  *                                                          *
- * -> given is a sorted array                               *
+ * -> given a sorted array                                  *
  * -> search for a given value in this array                *
  * -> first, check the value of the element in the center   *
  *      of the array                                        *
@@ -22,7 +22,7 @@
 #include <stdlib.h>
 
 /* declarations */
-int binary_search(int* number_array,
+int binary_search(int* num_array,
                   int low,
                   int high,
                   const int searched_value);
@@ -32,22 +32,20 @@ void evaluate_search_result(const int result, const int searched_value);
 int main() {
   /* create sorted array */
   const int length = 9;
-  int* number_array = (int*)malloc(sizeof(int) * length);
-  make_sorted_array(number_array, length);
+  int* num_array = (int*)malloc(sizeof(int) * length);
+  make_sorted_array(num_array, length);
 
-  /* pint array */
-  const int new_line = 50;
-  print_array(number_array, length, new_line);
+  /* print array */
+  print_array(num_array, length, 50);
 
   /* start binary search */
   const int searched_value = 7;
   const int result =
-      binary_search(number_array, 0, (length - 1), searched_value);
+      binary_search(num_array, 0, (length - 1), searched_value);
 
   /* evaluate result from binary search */
   evaluate_search_result(result, searched_value);
-
-  free(number_array);
+  free(num_array);
   return 0;
 }
 
@@ -55,7 +53,7 @@ int main() {
 /* use binary search algorithm to find value in array
  * return index of value in array or -1 if value not found
  * */
-int binary_search(int* number_array,
+int binary_search(int* num_array,
                   int low,
                   int high,
                   const int searched_value) {
@@ -65,17 +63,17 @@ int binary_search(int* number_array,
 
   int center = ((high + low) / 2);
 
-  if (searched_value == number_array[center]) {
+  if (searched_value == num_array[center]) {
     return center;
   }
 
-  if (searched_value < number_array[center]) {
+  if (searched_value < num_array[center]) {
     high = center - 1;
   } else {
     low = center + 1;
   }
 
-  return binary_search(number_array, low, high, searched_value);
+  return binary_search(num_array, low, high, searched_value);
 }
 
 /* evaluate the result from a binary search */
