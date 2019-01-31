@@ -27,16 +27,14 @@ int main() {
   scanf("%f", &price);
   printf("Enter the money(EUR) you pay: ");
   scanf("%f", &money_payed);
-
   change_return(price, money_payed);
-
   return 0;
 }
 
 /* definitions */
 /* calculate the rounded difference between two values */
 float difference(const float value_one, const float value_two) {
-  return (roundf((value_one - value_two) * 100) / 100);
+  return roundf((value_one - value_two) * 100) / 100;
 }
 
 /* calculate the change return */
@@ -56,10 +54,10 @@ void change_return(const float price, float money_payed) {
   }
 
   /* EUR */
-  const float MONEY[] = {500.0, 200.0, 100.0, 50.0, 20.0, 10.0, 5.0, 2.0,
+  const float money[] = {500.0, 200.0, 100.0, 50.0, 20.0, 10.0, 5.0, 2.0,
                          1.0,   0.5,   0.2,   0.1,  0.05, 0.02, 0.01};
 
-  const unsigned int amount_of_money_types = sizeof(MONEY) / sizeof(MONEY[0]);
+  const unsigned int amount_of_money_types = sizeof(money) / sizeof(money[0]);
 
   /* money to return */
   float return_money[amount_of_money_types];
@@ -68,8 +66,8 @@ void change_return(const float price, float money_payed) {
    * how many of every coin and banknote
    * */
   for (unsigned int i = 0; i < amount_of_money_types; i++) {
-    return_money[i] = floorf(diff / MONEY[i]);
-    diff = difference(diff, (return_money[i] * MONEY[i]));
+    return_money[i] = floorf(diff / money[i]);
+    diff = difference(diff, (return_money[i] * money[i]));
 
     if (diff == 0.0) {
       break;
@@ -81,7 +79,7 @@ void change_return(const float price, float money_payed) {
 
   for (unsigned int j = 0; j < amount_of_money_types; j++) {
     if (return_money[j] >= 1) {
-      printf("%5.0f x %5.2f EUR\n", return_money[j], MONEY[j]);
+      printf("%5.0f x %5.2f EUR\n", return_money[j], money[j]);
     }
   }
 

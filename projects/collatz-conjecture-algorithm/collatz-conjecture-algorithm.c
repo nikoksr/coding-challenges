@@ -13,15 +13,15 @@
 #include <stdio.h>
 
 /* declarations */
-int col_con_algo(const unsigned int number);
+int col_con_algo(const unsigned int num);
 
 /* main / wrapper function */
 int main() {
   printf("COLLATZ CONJENCTURE ALGORITHM\n\n");
 
   /* run algorithm and show results */
-  const unsigned int number = 0;
-  const unsigned int steps = col_con_algo(number);
+  const unsigned int num = 0;
+  const unsigned int steps = col_con_algo(num);
 
   printf("It took %d steps to complete the algorithm.\n", steps);
 
@@ -29,25 +29,25 @@ int main() {
 }
 
 /* collatz conjecture algorithm */
-int col_con_algo(const unsigned int number) {
+int col_con_algo(const unsigned int num) {
   /* input number has to be bigger than one */
-  if (number < 2) {
+  if (num < 2) {
     return -1;
   }
 
   /* the actual algorithm */
   unsigned int counter = 0;
-  unsigned int number_copy = number;
+  unsigned int num_copy = num;
 
   do {
-    if (number_copy % 2 == 0) {
-      number_copy = number_copy / 2;
+    if (num_copy % 2 == 0) {
+      num_copy = num_copy / 2;
     } else {
-      number_copy = number_copy * 3 + 1;
+      num_copy = num_copy * 3 + 1;
     }
 
     counter++;
-  } while (number_copy != 1);
+  } while (num_copy != 1);
 
   return counter;
 }

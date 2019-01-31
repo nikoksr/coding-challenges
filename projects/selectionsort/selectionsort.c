@@ -14,39 +14,38 @@
 #include "../../helper-functions/array_help.h"
 
 /* declarations */
-int find_smallest_value(int* number_array, const unsigned int length, const unsigned int index);
-void selection_sort(int* number_array, const unsigned int length);
+int find_smallest_value(int* arr, const unsigned int len, const unsigned int index);
+void selection_sort(int* arr, const unsigned int len);
 
 /* main / wrapper function */
 int main() {
   printf("SELECTION-SORT\n\n");
 
   /* create a random array of given length */
-  const unsigned int length = 100000;
-  int* number_array = (int*)malloc(sizeof(int) * length);
-  make_random_array(number_array, length);
+  const unsigned int len = 100000;
+  int* arr = (int*)malloc(sizeof(int) * len);
+  make_random_array(arr, len);
 
   /* print unsorted array */
   const unsigned int new_line = 25;
-  print_array(number_array, length, new_line);
+  print_array(arr, len, new_line);
 
   /* sort the array */
-  selection_sort(number_array, length);
+  selection_sort(arr, len);
 
   /* print sorted array */
-  print_array(number_array, length, new_line);
-  free(number_array);
+  print_array(arr, len, new_line);
+  free(arr);
   return 0;
 }
 
 /* definitions */
 /* finds smallest value in array and returns its index */
-int find_smallest_value(int* number_array, const unsigned int length, const unsigned int index) {
-  int smallest = index;
-  unsigned int i;
+int find_smallest_value(int* arr, const unsigned int len, const unsigned int index) {
+  unsigned int smallest = index;
 
-  for (i = (index + 1); i < length; ++i) {
-    if (number_array[i] < number_array[smallest]) {
+  for (unsigned int i = (index + 1); i < len; ++i) {
+    if (arr[i] < arr[smallest]) {
       smallest = i;
     }
   }
@@ -55,13 +54,13 @@ int find_smallest_value(int* number_array, const unsigned int length, const unsi
 }
 
 /* selctionsort algorithm */
-void selection_sort(int* number_array, const unsigned int length) {
-  int smallest;
+void selection_sort(int* arr, const unsigned int len) {
+  unsigned int smallest;
 
-  for (unsigned int i = 0; i < length; ++i) {
-    smallest = find_smallest_value(number_array, length, i);
-    if (number_array[smallest] < number_array[i]) {
-      swap(&number_array[smallest], &number_array[i]);
+  for (unsigned int i = 0; i < len; ++i) {
+    smallest = find_smallest_value(arr, len, i);
+    if (arr[smallest] < arr[i]) {
+      swap(&arr[smallest], &arr[i]);
     }
   }
 }

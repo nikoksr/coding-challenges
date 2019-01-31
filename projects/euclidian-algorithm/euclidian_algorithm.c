@@ -17,14 +17,15 @@
 
 /* declarations */
 void sort_bigger_smaller(unsigned int* num_one, unsigned int* num_two);
-int euclidian_algo(int bigger, int smaller);
-int greatest_common_divisor(const int num_one, const int num_two);
+unsigned int euclidian_algo(unsigned int bigger, unsigned int smaller);
+unsigned int greatest_common_divisor(const unsigned int num_one, const int unsigned num_two);
 
 /* main / wrapper function */
 int main() {
   const unsigned int num_one = 120;
   const unsigned int num_two = 180;
   const unsigned int gcd = greatest_common_divisor(num_one, num_two);
+
   printf("%d\n", gcd);
   return 0;
 }
@@ -35,14 +36,14 @@ int main() {
  * */
 void sort_bigger_smaller(unsigned int* num_one, unsigned int* num_two) {
   if (*num_one < *num_two) {
-    unsigned int temp = *num_one;
+    const unsigned int tmp = *num_one;
     *num_one = *num_two;
-    *num_two = temp;
+    *num_two = tmp;
   }
 }
 
 /* the actual algorithm */
-int euclidian_algo(int bigger, int smaller) {
+unsigned int euclidian_algo(unsigned int bigger, unsigned int smaller) {
   /* actual algorithm */
   unsigned int remainder = bigger % smaller;
   unsigned int old_remainder;
@@ -62,7 +63,7 @@ int euclidian_algo(int bigger, int smaller) {
 }
 
 /* using the euclidian algorithm to calculate the GCD of two numbers */
-int greatest_common_divisor(const int num_one, const int num_two) {
+unsigned int greatest_common_divisor(const unsigned int num_one, const unsigned int num_two) {
   /* catch case where numbers are equal */
   if (num_one == num_two) {
     return num_one;

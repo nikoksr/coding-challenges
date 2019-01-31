@@ -35,20 +35,20 @@ int main() {
   printf("QUICKSORT\n\n");
 
   /* create a random array of given length */
-  const unsigned int arr_len = 1000000;
-  int* arr = (int*)malloc(sizeof(int) * arr_len);
-  make_random_array(arr, arr_len);
+  const unsigned int len = 1000000;
+  int* arr = (int*)malloc(sizeof(int) * len);
+  make_random_array(arr, len);
 
   /* print unsorted array */
   const unsigned int new_line = 50;
-  print_array(arr, arr_len, new_line);
+  print_array(arr, len, new_line);
   printf("\n");
 
   /* sort the array */
-  quicksort(arr, 0, arr_len - 1);
+  quicksort(arr, 0, len - 1);
 
   /* print sorted array */
-  print_array(arr, arr_len, new_line);
+  print_array(arr, len, new_line);
   printf("\n");
   free(arr);
   return 0;
@@ -72,10 +72,7 @@ void quicksort(int* arr, const unsigned int low, const unsigned int high) {
 
 /* partition the array
  * hoare partition scheme */
-unsigned int partitioning(int* arr,
-                 const unsigned int pivot,
-                 const unsigned int low,
-                 const unsigned int high) {
+unsigned int partitioning(int* arr, const unsigned int pivot, const unsigned int low, const unsigned int high) {
   unsigned int i = low - 1;
   unsigned int j = high + 1;
 

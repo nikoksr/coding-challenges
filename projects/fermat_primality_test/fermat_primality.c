@@ -34,7 +34,6 @@ int main() {
   const unsigned int res = fermat_test(num, runs);
 
   printf("%d -> %d\n", num, res);
-
   return 0;
 }
 
@@ -78,7 +77,7 @@ unsigned int fermat_test(const unsigned int num, const unsigned int runs) {
 
   /* fermats little theorem */
   for (unsigned int i = 0; i < runs; ++i) {
-    const int random_num = rand() % (num - 2) + 2;
+    const unsigned int random_num = rand() % (num - 2) + 2;
     const unsigned int ferm = pow_remainder(num, random_num);
 
     if (ferm != 1) {

@@ -12,30 +12,30 @@
 #include "../../helper-functions/array_help.h"
 
 /* declarations */
-void insertsort(int* arr, const unsigned int arr_len);
+void insertsort(int* arr, const unsigned int len);
 
 /* main / wrapper function */
 int main() {
   /* create random array of some length */
-  const unsigned int length = 100000;
-  int* some_array = (int*)malloc(sizeof(int) * length);
-  make_random_array(some_array, length);
+  const unsigned int len = 100000;
+  int* some_array = (int*)malloc(sizeof(int) * len);
+  make_random_array(some_array, len);
 
   /* run insertsort against array */
   const unsigned int new_line = 25;
-  print_array(some_array, length, new_line);
-  insertsort(some_array, length);
-  print_array(some_array, length, new_line);
+  print_array(some_array, len, new_line);
+  insertsort(some_array, len);
+  print_array(some_array, len, new_line);
   free(some_array);
   return 0;
 }
 
 /* definitions */
 /* run insertion sort algorithm */
-void insertsort(int* arr, const unsigned int arr_len) {
+void insertsort(int* arr, const unsigned int len) {
   unsigned int counter_one = 1;
 
-  while (counter_one < arr_len) {
+  while (counter_one < len) {
     unsigned int counter_two = counter_one;
 
     while (counter_two > 0 &&

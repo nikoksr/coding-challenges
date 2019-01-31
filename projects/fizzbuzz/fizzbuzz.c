@@ -17,11 +17,10 @@ void fizzbuzz(const unsigned int start, const unsigned int end);
 
 /* main / wrapper function */
 int main() {
-  const int start = 1;
-  const int end = 100;
+  const unsigned int start = 1;
+  const unsigned int end = 100;
 
   fizzbuzz(start, end);
-
   return 0;
 }
 

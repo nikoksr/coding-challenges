@@ -17,97 +17,93 @@
 #include <string.h>
 
 /* declarations */
-struct compressed_string {
+struct compressed_str {
   char letters[512];
   int counts[512];
 };
 
-void run_length_encode(const char* uncompr_string,
-                       struct compressed_string* compr_strg);
-void run_length_decode(struct compressed_string* compr_strg,
-                       char* uncompr_string);
-void print_compressed_string(struct compressed_string* compr_strg);
+void run_length_encode(const char* uncompressed_str, struct compressed_str* compressed_str);
+
+void run_length_decode(struct compressed_str* compressed_str, char* uncompressed_str);
+
+void print_compressed_string(struct compressed_str* compressed_str);
 
 /* main / wrapper function */
 int main() {
   /* string to compress */
-  const unsigned int length = 119;
-  char* some_string = (char*)malloc(length);
-  strcpy(some_string,
-         "aaaaaaaaaaaaaabbbbbbbbbbbbbbbcccccccccccccdddddddddddeeeeeefffffggghh"
+  const unsigned int len = 119;
+  char* str = (char*)malloc(len);
+  strcpy(str, "aaaaaaaaaaaaaabbbbbbbbbbbbbbbcccccccccccccdddddddddddeeeeeefffffggghh"
          "iijjjjkklllmmmnnnnoooppqqrrssstttuuuvvwwwxxxyyyzz");
 
-  /* compressed string */
-  struct compressed_string compr_strg;
-  run_length_encode(some_string, &compr_strg);
+  /* compress string */
+  struct compressed_str compressed_str;
+  run_length_encode(str, &compressed_str);
   printf("Compressed:\t");
-  print_compressed_string(&compr_strg);
+  print_compressed_string(&compressed_str);
 
   /* uncompress string */
-  char* dec_string = (char*)malloc(length);
-  run_length_decode(&compr_strg, dec_string);
-  printf("Decompressed:\t%s\n", dec_string);
-
-  free(some_string);
-
+  char* decompress_str = (char*)malloc(len);
+  run_length_decode(&compressed_str, decompress_str);
+  printf("Decompressed:\t%s\n", decompress_str);
+  free(str);
   return 0;
 }
 
 /* definitions */
 /* encode string using run-length algorithm */
-void run_length_encode(const char* uncompr_string,
-                       struct compressed_string* compr_strg) {
-  const unsigned int length = strlen(uncompr_string);
-  unsigned int compr_strg_counter = 0;
+void run_length_encode(const char* uncompressed_str, struct compressed_str* compressed_str) {
+  const unsigned int len = strlen(uncompressed_str);
+  unsigned int compressed_str_counter = 0;
 
-  for (unsigned int i = 0; i < length; ++i) {
-    char letter = uncompr_string[i];
+  for (unsigned int i = 0; i < len; ++i) {
+    char letter = uncompressed_str[i];
     unsigned int letter_counter = 1;
 
     /* count consecutive occurence of character */
-    while (uncompr_string[i] == uncompr_string[i + 1]) {
+    while (uncompressed_str[i] == uncompressed_str[i + 1]) {
       ++letter_counter;
       ++i;
     }
 
     /* write character and amount of consecutive occurences in arrays */
-    compr_strg->letters[compr_strg_counter] = letter;
-    compr_strg->counts[compr_strg_counter] = letter_counter;
-    ++compr_strg_counter;
+    compressed_str->letters[compressed_str_counter] = letter;
+    compressed_str->counts[compressed_str_counter] = letter_counter;
+    ++compressed_str_counter;
   }
 
-  compr_strg->letters[compr_strg_counter] = '\0';
+  compressed_str->letters[compressed_str_counter] = '\0';
 }
 
 /* decode run-length encoded string */
-void run_length_decode(struct compressed_string* compr_strg,
-                       char* uncompressed_string) {
-  const unsigned int length = strlen(compr_strg->letters);
-  unsigned int uncompressed_length = 0;
+void run_length_decode(struct compressed_str* compressed_str, char* uncompressed_str) {
+  const unsigned int len = strlen(compressed_str->letters);
+  unsigned int uncompressed_len = 0;
 
-  for (unsigned int i = 0; i < length; ++i) {
-    unsigned int count = compr_strg->counts[i];
-    uncompressed_length += count;
+  for (unsigned int i = 0; i < len; ++i) {
+    unsigned int count = compressed_str->counts[i];
+    uncompressed_len += count;
 
     char letters[count + 1];
-    char letter = compr_strg->letters[i];
+    char letter = compressed_str->letters[i];
 
     for (unsigned int j = 0; j < count; ++j) {
       letters[j] = letter;
     }
+
     letters[count] = '\0';
-    strcat(uncompressed_string, letters);
+    strcat(uncompressed_str, letters);
   }
 
-  uncompressed_string[uncompressed_length] = '\0';
+  uncompressed_str[uncompressed_len] = '\0';
 }
 
 /* print the compressed string struct */
-void print_compressed_string(struct compressed_string* compr_strg) {
-  const unsigned int length = strlen(compr_strg->letters);
+void print_compressed_string(struct compressed_str* compressed_str) {
+  const unsigned int len = strlen(compressed_str->letters);
 
-  for (unsigned int i = 0; i < length; ++i) {
-    printf("%c%d", compr_strg->letters[i], compr_strg->counts[i]);
+  for (unsigned int i = 0; i < len; ++i) {
+    printf("%c%d", compressed_str->letters[i], compressed_str->counts[i]);
   }
 
   printf("\n");

@@ -14,7 +14,7 @@
 #include "../../helper-functions/array_help.h"
 
 /* declarations */
-void heap_permutation(int* some_array, const unsigned int total_length, const unsigned int length);
+void heap_permutation(int* arr, const unsigned int original_len, const unsigned int len);
 
 /* main / wrapper function */
 int main() {
@@ -22,34 +22,34 @@ int main() {
 
   /* Create sorted array of some size */
   const int len = 3;
-  int* some_array = (int*)malloc(sizeof(int) * len);
-  make_sorted_array(some_array, len);
+  int* arr = (int*)malloc(sizeof(int) * len);
+  make_sorted_array(arr, len);
 
   /* Run heap permutation against array */
-  heap_permutation(some_array, len, len);
-  free(some_array);
+  heap_permutation(arr, len, len);
+  free(arr);
   return 0;
 }
 
 /* definitions */
-void heap_permutation(int* some_array, const unsigned int total_length, const unsigned int length) {
+void heap_permutation(int* arr, const unsigned int original_len, const unsigned int new_len) {
   /* print array once length equals 1 */
-  if (length == 1) {
-    print_array(some_array, total_length, 25);
+  if (new_len == 1) {
+    print_array(arr, original_len, 25);
     return;
   }
 
-  for (unsigned int i = 0; i < length; ++i) {
+  for (unsigned int i = 0; i < new_len; ++i) {
     /* recursive call and decreasing length by one */
-    heap_permutation(some_array, total_length, length - 1);
+    heap_permutation(arr, original_len, new_len - 1);
 
     /* if length is even, swap i-th element and last element */
-    if (length % 2 == 0) {
-      swap(&some_array[i], &some_array[length - 1]);
+    if (new_len % 2 == 0) {
+      swap(&arr[i], &arr[new_len - 1]);
     }
     /* if length is odd, swap first element and last element */
     else {
-      swap(&some_array[0], &some_array[length - 1]);
+      swap(&arr[0], &arr[new_len - 1]);
     }
   }
 }

@@ -16,7 +16,7 @@
 
 /* declarations */
 unsigned int is_happy_number(unsigned int num);
-unsigned int is_in_array(const unsigned int num, unsigned int* num_arr, const unsigned int arr_len);
+unsigned int is_in_array(const unsigned int num, unsigned int* arr, const unsigned int arr_len);
 unsigned int sum_digits(unsigned int num);
 
 /* main / wrapper function */
@@ -24,16 +24,16 @@ int main() {
   printf("HAPPY NUMBERS\n\n");
 
   /* calculate and evaluate */
-  const unsigned int number = 10;
-  const unsigned int result = is_happy_number(number);
+  const unsigned int num = 10;
+  const unsigned int res = is_happy_number(num);
 
-  switch (result) {
+  switch (res) {
     case 1:
-      printf("Number %d is a happy number.\n", number);
+      printf("Number %d is a happy number.\n", num);
       break;
 
     case 0:
-      printf("Number %d is not a happy number.\n", number);
+      printf("Number %d is not a happy number.\n", num);
       break;
 
     default:
@@ -47,18 +47,18 @@ int main() {
 /* check if a given number is a happy number */
 unsigned int is_happy_number(unsigned int num) {
   const unsigned int arr_len = 255;
-  unsigned int* num_arr = (unsigned int*)malloc(sizeof(unsigned int) * arr_len);
+  unsigned int* arr = (unsigned int*)malloc(sizeof(unsigned int) * arr_len);
   unsigned int counter = 0;
 
   /* while the number is > 1 and was not found previously (loop) - keep
    * calculating */
-  while (num > 1 && is_in_array(num, num_arr, arr_len) == 0) {
+  while (num > 1 && is_in_array(num, arr, arr_len) == 0) {
     /* overwrite array to prevent overflow */
     if (counter > (arr_len - 1)) {
       counter = 0;
     }
 
-    num_arr[counter] = num;
+    arr[counter] = num;
     num = sum_digits(num);
     counter++;
   }
@@ -73,9 +73,9 @@ unsigned int is_happy_number(unsigned int num) {
 }
 
 /* checks an array of numbers if a given number is already in it */
-unsigned int is_in_array(const unsigned int num, unsigned int* num_arr, const unsigned int arr_len) {
+unsigned int is_in_array(const unsigned int num, unsigned int* arr, const unsigned int arr_len) {
   for (unsigned int i = 0; i < arr_len; i++) {
-    if (num_arr[i] == num) {
+    if (arr[i] == num) {
       /* number found in array */
       return 1;
     }

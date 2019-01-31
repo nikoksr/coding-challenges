@@ -15,27 +15,25 @@
 #include <string.h>
 
 /* declarations */
-int is_armstrong_number(const unsigned int num);
-void print_result(const unsigned int num, const unsigned int result);
+unsigned int is_armstrong_number(const unsigned int num);
+void print_result(const unsigned int num, const unsigned int res);
 
 /* main / wrapper function */
 int main() {
   printf("ARMSTRONG NUMBER\n\n");
-
   const unsigned int num = 153;
-  const unsigned int result = is_armstrong_number(num);
-  print_result(num, result);
-
+  const unsigned int res = is_armstrong_number(num);
+  print_result(num, res);
   return 0;
 }
 
 /* definitions */
 /* function to check if a number is an armstrong number
- * returns 1 if true, returns 0 if false, returns -1 if error
+ * returns 1 if true, returns 0 if false, returns 2 if error
  */
-int is_armstrong_number(const unsigned int num) {
+unsigned int is_armstrong_number(const unsigned int num) {
   if (num < 0) {
-    return -1;
+    return 2;
   }
 
   unsigned int n = num;
@@ -56,23 +54,23 @@ int is_armstrong_number(const unsigned int num) {
 }
 
 /* print the result */
-void print_result(const unsigned int num, const unsigned int result) {
-  char result_text[24];
+void print_result(const unsigned int num, const unsigned int res) {
+  char res_text[24];
 
-  switch (result) {
-    case 1:
-      strcpy(result_text, "true");
-      break;
+  switch (res) {
     case 0:
-      strcpy(result_text, "false");
+      strcpy(res_text, "false");
       break;
-    case -1:
-      strcpy(result_text, "Error: Value smaller 0.");
+    case 1:
+      strcpy(res_text, "true");
+      break;
+    case 2:
+      strcpy(res_text, "Error: Value smaller 0.");
       break;
     default:
-      strcpy(result_text, "Unknown error.");
+      strcpy(res_text, "Unknown error.");
       break;
   }
 
-  printf("%d -> %s\n", num, result_text);
+  printf("%d -> %s\n", num, res_text);
 }

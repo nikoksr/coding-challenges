@@ -35,16 +35,16 @@ int main() {
 /* definitions */
 /* reverse a given string */
 void reverse_string(char* str) {
-  const unsigned int str_len = strlen(str);
-  unsigned int reverse_counter = str_len - 1;
-  char reverse_str[str_len];
+  const unsigned int len = strlen(str);
+  unsigned int reverse_counter = len - 1;
+  char reverse_str[len];
 
-  for (unsigned int i = 0; i < str_len; ++i) {
+  for (unsigned int i = 0; i < len; ++i) {
     reverse_str[i] = str[reverse_counter];
     reverse_counter--;
   }
 
-  reverse_str[str_len] = '\0';
+  reverse_str[len] = '\0';
   strcpy(str, reverse_str);
 }
 

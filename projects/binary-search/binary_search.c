@@ -17,35 +17,30 @@
 
 /* includes */
 #include "../../helper-functions/array_help.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 
 /* declarations */
-int binary_search(int* num_array,
-                  int low,
-                  int high,
-                  const int searched_value);
-void evaluate_search_result(const int result, const int searched_value);
+int binary_search(int* arr, unsigned int low, unsigned int high, const int searched_value);
+void evaluate_search_result(const int res, const int searched_value);
 
 /* main / wrapper function */
 int main() {
   /* create sorted array */
-  const int length = 9;
-  int* num_array = (int*)malloc(sizeof(int) * length);
-  make_sorted_array(num_array, length);
+  const unsigned int len = 9;
+  int* arr = (int*)malloc(sizeof(int) * len);
+  make_sorted_array(arr, len);
 
   /* print array */
-  print_array(num_array, length, 50);
+  print_array(arr, len, 50);
 
   /* start binary search */
   const int searched_value = 7;
-  const int result =
-      binary_search(num_array, 0, (length - 1), searched_value);
+  const int res = binary_search(arr, 0, (len - 1), searched_value);
 
   /* evaluate result from binary search */
-  evaluate_search_result(result, searched_value);
-  free(num_array);
+  evaluate_search_result(res, searched_value);
+  free(arr);
   return 0;
 }
 
@@ -53,36 +48,33 @@ int main() {
 /* use binary search algorithm to find value in array
  * return index of value in array or -1 if value not found
  * */
-int binary_search(int* num_array,
-                  int low,
-                  int high,
-                  const int searched_value) {
+int binary_search(int* arr, unsigned int low, int unsigned high, const int searched_value) {
   if (high < low) {
     return -1;
   }
 
-  int center = ((high + low) / 2);
+  int center = (high + low) / 2;
 
-  if (searched_value == num_array[center]) {
+  if (searched_value == arr[center]) {
     return center;
   }
 
-  if (searched_value < num_array[center]) {
+  if (searched_value < arr[center]) {
     high = center - 1;
   } else {
     low = center + 1;
   }
 
-  return binary_search(num_array, low, high, searched_value);
+  return binary_search(arr, low, high, searched_value);
 }
 
 /* evaluate the result from a binary search */
-void evaluate_search_result(const int result, const int searched_value) {
-  switch (result) {
+void evaluate_search_result(const int res, const int searched_value) {
+  switch (res) {
     case -1:
       printf("Value not found.\n");
       break;
     default:
-      printf("Value %d found at index %d\n", searched_value, result);
+      printf("Value %d found at index %d\n", searched_value, res);
   }
 }
