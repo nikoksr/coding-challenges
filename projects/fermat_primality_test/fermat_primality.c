@@ -19,8 +19,8 @@
 #include <time.h>
 
 /* declarations */
-int pow_remainder(int number, int random_num);
-int fermat_test(const int number, const int runs);
+unsigned int pow_remainder(const unsigned int num, unsigned int random_num);
+unsigned int fermat_test(const unsigned int num, const unsigned int runs);
 
 /* main / wrapper function */
 int main() {
@@ -28,12 +28,12 @@ int main() {
   printf("FERMAT PRIMALITY TEST\n\n");
 
   /* number to test */
-  const int number = 7919;
-  /* number of runs - more runs equal higher result precision */
-  const int runs = 1;
-  const int result = fermat_test(number, runs);
+  const unsigned int num = 7919;
+  /* number of runs - more runs equal higher precision */
+  const unsigned int runs = 1;
+  const unsigned int res = fermat_test(num, runs);
 
-  printf("%d -> %d\n", number, result);
+  printf("%d -> %d\n", num, res);
 
   return 0;
 }
@@ -44,9 +44,9 @@ int main() {
  *  that is too big to store for any c type
  * remain = (random_number ^ exponent) % number
  */
-int pow_remainder(int number, int random_num) {
-  int exponent = number - 1;
-  int remain = 1;
+unsigned int pow_remainder(const unsigned int num, unsigned int random_num) {
+  unsigned int exponent = num - 1;
+  unsigned int remain = 1;
 
   while (exponent > 0) {
     /*
@@ -54,33 +54,32 @@ int pow_remainder(int number, int random_num) {
      *   would result in 0 remain
      */
     if (exponent % 2 != 0) {
-      remain = (remain * random_num) % number;
+      remain = (remain * random_num) % num;
     }
 
-    exponent = exponent / 2;
-    random_num = (random_num * random_num) % number;
+    exponent /= 2;
+    random_num = (random_num * random_num) % num;
   }
 
   return remain;
 }
 
 /* fermat primal algorithm */
-int fermat_test(const int number, const int runs) {
-  if (number < 2) {
+unsigned int fermat_test(const unsigned int num, const unsigned int runs) {
+  if (num < 2) {
     return 0;
   }
 
-  if (number == 2) {
+  if (num == 2) {
     return 1;
   }
 
   srand(time(NULL));
 
-  for (int i = 0; i < runs; ++i) {
-    const int random_num = rand() % (number - 2) + 2;
-
-    /* fermats little theorem */
-    int ferm = pow_remainder(number, random_num);
+  /* fermats little theorem */
+  for (unsigned int i = 0; i < runs; ++i) {
+    const int random_num = rand() % (num - 2) + 2;
+    const unsigned int ferm = pow_remainder(num, random_num);
 
     if (ferm != 1) {
       return 0;
