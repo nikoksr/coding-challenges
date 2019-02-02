@@ -81,7 +81,7 @@ unsigned int partitioning(int* arr, const unsigned int pivot, const unsigned int
 
     /* Search from right for value smaller than the pivots value */
     do {
-      j++;
+      j--;
     } while (arr[j] > arr[pivot]);
 
     /* Pivot is in its final position */
