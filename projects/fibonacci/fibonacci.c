@@ -1,25 +1,35 @@
+/********************************************************************************
+ * Title: Fibonacci
+ * Project: Coding Challenges
+ * Author: Niko Köser
+ * Description: Each number is the sum of the two preceding ones.
+ * Example: 0 + 1 = 1
+ *          1 + 1 = 2
+ *          1 + 2 = 3
+ *          2 + 3 = 5
+ *          3 + 5 = 8
+ *          ...
+ *******************************************************************************/
+
+/* Includes */
 #include <limits.h>
 #include <stdio.h>
 
-/* fibonacci calculation */
+/* Declarations */
 void fibonacci_factor_limiter(const unsigned int factor);
 void fibonacci_number_limiter(const unsigned int num);
 
-/* wrapper function */
+/* Main function */
 int main() {
-  /* maximum number */
   const unsigned int number = 100;
-  fibonacci_number_limiter(number);
-
-  /* maximum factor */
   const unsigned int factor = 10;
-  fibonacci_factor_limiter(factor);
 
+  fibonacci_number_limiter(number);
+  fibonacci_factor_limiter(factor);
   return 0;
 }
 
-/* fibonacci calculations */
-/* maximum factor */
+/* Definitions */
 void fibonacci_factor_limiter(const unsigned int factor) {
   unsigned int a = 0, b = 1, c = 0, counter = 1;
   printf("%6d : %6d\n", counter, a);
@@ -33,7 +43,6 @@ void fibonacci_factor_limiter(const unsigned int factor) {
   }
 }
 
-/* maximum number */
 void fibonacci_number_limiter(const unsigned int num) {
   unsigned int a = 0, b = 1, c = 0, counter = 1;
   printf("%6d : %6d\n", counter, a);

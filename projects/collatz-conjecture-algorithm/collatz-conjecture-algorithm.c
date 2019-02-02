@@ -1,41 +1,35 @@
-/************************************************
- *  Collatz Conjencture Algorithm               *
- *                                              *
- *  -> starting with a number n > 1             *
- *  -> if n is even, divide by 2                *
- *  -> if n is odd, multiply by 3               *
- *      and add 1                               *
- *  -> how many steps does it take              *
- *      until n equals 1?                       *
- ************************************************/
+/********************************************************************************
+ * Title: Collatz Conjencture Algorithm
+ * Project: Coding Challenges
+ * Author: Niko Köser
+ * Description: Starting with a number n greater than 1. If n is even, divide it
+ *  by 2. If n is odd, multiply it by 3 and add 1. How many steps does it take
+ *  until n equals 1?
+ ********************************************************************************/
 
-/* includes */
+/* Includes */
 #include <stdio.h>
 
-/* declarations */
+/* Declarations */
 int col_con_algo(const unsigned int num);
 
-/* main / wrapper function */
+/* Main function */
 int main() {
   printf("COLLATZ CONJENCTURE ALGORITHM\n\n");
 
-  /* run algorithm and show results */
   const unsigned int num = 0;
   const unsigned int steps = col_con_algo(num);
 
   printf("It took %d steps to complete the algorithm.\n", steps);
-
   return 0;
 }
 
-/* collatz conjecture algorithm */
+/* Definitions */
 int col_con_algo(const unsigned int num) {
-  /* input number has to be bigger than one */
   if (num < 2) {
     return -1;
   }
 
-  /* the actual algorithm */
   unsigned int counter = 0;
   unsigned int num_copy = num;
 

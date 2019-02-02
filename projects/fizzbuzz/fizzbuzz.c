@@ -1,21 +1,21 @@
-/************************************************
- * Fizz Buzz                                    *
- *                                              *
- *  -> print number 1 to 100                    *
- *  -> for multipliers of 3 print fizz          *
- *  -> for multipliers of 5 print buzz          *
- *  -> for multipliers of 3 and 5               *
- *      print fizzbuzz                          *
+/********************************************************************************
+ * Title: Fizz Buzz
+ * Project: Coding Challenges
+ * Author: Niko Köser
+ * Description: For a natural number n. If n is a multiplier of 3 print fizz,
+ *  if n is a multiplier of 5 print buzz, if n is a multiplier of 3 and 5 print
+ *  fizzbuzz. If none of the above statements applies, print n. Increase n by one
+ *  and repeat the previous steps.
  ************************************************/
 
-/* includes */
+/* Includes */
 #include <stdio.h>
 #include <string.h>
 
-/* declarations */
+/* Declarations */
 void fizzbuzz(const unsigned int start, const unsigned int end);
 
-/* main / wrapper function */
+/* Main function */
 int main() {
   const unsigned int start = 1;
   const unsigned int end = 100;
@@ -24,7 +24,7 @@ int main() {
   return 0;
 }
 
-/* definitions */
+/* Definitions */
 void fizzbuzz(const unsigned int start, const unsigned int end) {
   if (end < start) {
     printf("Invalid values.\n");

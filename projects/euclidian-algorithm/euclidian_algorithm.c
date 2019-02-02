@@ -1,26 +1,24 @@
-/************************************************************
- * euclidian algorithm                                      *
- *                                                          *
- * -> finds the greatest common divisor of two numbers      *
- * -> find the remainder(modulo) of the larger number       *
- *      divided by the smaller number                       *
- * -> repeat this step but divide the previous divisor by   *
- *      the previous remainder                              *
- * -> repeat this until the remainder becomes zero or one   *
- * -> if the remainder becomes zero, the previous remainder *
- *      is the GCD of the two numbers we started with       *
- * -> if the remainder becomes one, then one is the GCD     *
- ************************************************************/
+/********************************************************************************
+ * Title: Euclidian Algorithm
+ * Project: Coding Challenges
+ * Author: Niko Köser
+ * Description: Search the greatest common divisor of two numbers. Start by
+ *  calculating the remainder(modulo) of the larger number divided by the smaller
+ *  number. Repeat this step but divide the previous divisor by the previous
+ *  remainder. Repeat this until the remainderor one of the remainders equals
+ *  zero. In this case the previous remainder is the GCD. If the remainder
+ *  equals one the GCD is 1.
+ *******************************************************************************/
 
-/* includes */
+/* Includes */
 #include <stdio.h>
 
-/* declarations */
+/* Declarations */
 void sort_bigger_smaller(unsigned int* num_one, unsigned int* num_two);
 unsigned int euclidian_algo(unsigned int bigger, unsigned int smaller);
 unsigned int greatest_common_divisor(const unsigned int num_one, const int unsigned num_two);
 
-/* main / wrapper function */
+/* Main function */
 int main() {
   const unsigned int num_one = 120;
   const unsigned int num_two = 180;
@@ -30,10 +28,7 @@ int main() {
   return 0;
 }
 
-/* definitions */
-/* make num_one the bigger equal the bigger number
- * and num_two equal the smaller number
- * */
+/* Definitions */
 void sort_bigger_smaller(unsigned int* num_one, unsigned int* num_two) {
   if (*num_one < *num_two) {
     const unsigned int tmp = *num_one;
@@ -42,9 +37,7 @@ void sort_bigger_smaller(unsigned int* num_one, unsigned int* num_two) {
   }
 }
 
-/* the actual algorithm */
 unsigned int euclidian_algo(unsigned int bigger, unsigned int smaller) {
-  /* actual algorithm */
   unsigned int remainder = bigger % smaller;
   unsigned int old_remainder;
 
@@ -62,21 +55,15 @@ unsigned int euclidian_algo(unsigned int bigger, unsigned int smaller) {
   return 1;
 }
 
-/* using the euclidian algorithm to calculate the GCD of two numbers */
 unsigned int greatest_common_divisor(const unsigned int num_one, const unsigned int num_two) {
-  /* catch case where numbers are equal */
   if (num_one == num_two) {
     return num_one;
   }
 
-  /* sort values
-   * variables used for better understanding
-   * */
   unsigned int bigger = num_one;
   unsigned int smaller = num_two;
   sort_bigger_smaller(&bigger, &smaller);
 
-  /* catch case where the smaller value is the BCD */
   if (bigger % smaller == 0) {
     return smaller;
   }

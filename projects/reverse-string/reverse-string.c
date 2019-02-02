@@ -1,39 +1,36 @@
-/************************************************
- * Reverse String                               *
- *                                              *
- *  -> reverse and return a given string        *
- ************************************************/
+/********************************************************************************
+ * Title: Reverse String
+ * Project: Coding Challenges
+ * Author: Niko Köser
+ * Description: Reverse a given string.
+ ********************************************************************************/
 
-/* includes */
+/* Includes */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-/* declarations */
+/* Declarations */
 void reverse_string(char* str);
 void remove_trailing_newline(char* str);
 
-/* main / wrapper function */
+/* Main function */
 int main() {
-  /* read in a string */
   const unsigned int max_len = 255;
-  char str[max_len];
-  printf("Enter some string: ");
-  fgets(str, max_len, stdin);
-  remove_trailing_newline(str);
+  char str[max_len] = "Hello World!";
 
-  /* keep copy of unreverted string */
-  char old_str[max_len];
-  strcpy(old_str, str);
+  /* Keep copy of original string */
+  char original_str[max_len];
 
-  /* revert string */
+  strcpy(original_str, str);
+
+  /* Revert string */
   reverse_string(str);
-  printf("%s -> %s\n", old_str, str);
+  printf("%s -> %s\n", original_str, str);
   return 0;
 }
 
-/* definitions */
-/* reverse a given string */
+/* Definitions */
 void reverse_string(char* str) {
   const unsigned int len = strlen(str);
   unsigned int reverse_counter = len - 1;
@@ -48,7 +45,6 @@ void reverse_string(char* str) {
   strcpy(str, reverse_str);
 }
 
-/* removes a trailing newline created by fgets() */
 void remove_trailing_newline(char* str) {
   str[strcspn(str, "\n")] = 0;
 }

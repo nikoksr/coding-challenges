@@ -1,26 +1,25 @@
-/************************************************
- * bruteforce prime
- *
- * -> Use bruteforce to check if a number n is
- *    prime.
- * -> Prime if: - it's a natural number
- *              - it's greater than 1
- *              - it's only divisble by 1 and
- *                itself
- ************************************************/
+/********************************************************************************
+ * Title: Bruteforce Prime
+ * Project: Coding Challenges
+ * Author: Niko Köser
+ * Description: Use bruteforce to check if a number n is prime. A number is prime
+ *  if it's a natural number, it's greater than 1 and it's only divisble by 1 and
+ *  itself. At fist the bruteforce method checks if the number is odd. If it is,
+ *  the algorithm simply tries to divide the given number by every single odd
+ *  number smaller than the half of given number.
+ *******************************************************************************/
 
-/* includes */
+/* Includes */
 #include <stdio.h>
 
-/* declarations */
+/* Declarations */
 int is_prime(const unsigned int num);
 void find_primes(const unsigned int start, const unsigned int end);
 
-/* main function */
+/* Main function */
 int main() {
   printf("BRUTEFORCE PRIME\n\n");
 
-  // Run prime searching loop
   const unsigned int start = 2;
   const unsigned int end = 100;
 
@@ -44,7 +43,7 @@ int is_prime(const unsigned int num) {
     return 0;
   }
 
-  // Brute-force check
+  // Bruteforce
   for (unsigned int i = 3; i < num / 2; i += 2) {
     if (num % i == 0) {
       return 0;

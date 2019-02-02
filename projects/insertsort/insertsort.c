@@ -1,37 +1,40 @@
-/************************************************************
- * insert sort                                              *
- *                                                          *
- * -> iterate through array starting at the left side       *
- * -> if element left from current element is bigger        *
- *      -> swap elements                                    *
- ************************************************************/
+/********************************************************************************
+ * Title: Insert Sort
+ * Project: Coding Challenges
+ * Author: Niko Köser
+ * Description: Iterate through an unsorted array consisting of integers starting
+ *  at the first element of the array which is considered as sorted. Iterate over
+ *  the array and check each element with the previous elements. Elements smaller
+ *  than the current element are inserted before the current element.
+ *******************************************************************************/
 
-/* includes */
+/* Includes */
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../helper-functions/array_help.h"
 
-/* declarations */
+/* Declarations */
 void insertsort(int* arr, const unsigned int len);
 
-/* main / wrapper function */
+/* Main function */
 int main() {
-  /* create random array of some length */
+  /* Create random integer array */
   const unsigned int len = 100000;
-  int* some_array = (int*)malloc(sizeof(int) * len);
-  make_random_array(some_array, len);
+  int* arr = (int*)malloc(sizeof(int) * len);
 
-  /* run insertsort against array */
+  make_random_array(arr, len);
+
+  /* Run insertsort against the array */
   const unsigned int new_line = 25;
-  print_array(some_array, len, new_line);
-  insertsort(some_array, len);
-  print_array(some_array, len, new_line);
-  free(some_array);
+
+  print_array(arr, len, new_line);
+  insertsort(arr, len);
+  print_array(arr, len, new_line);
+  free(arr);
   return 0;
 }
 
-/* definitions */
-/* run insertion sort algorithm */
+/* Definitions */
 void insertsort(int* arr, const unsigned int len) {
   unsigned int counter_one = 1;
 

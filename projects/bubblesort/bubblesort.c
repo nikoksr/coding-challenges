@@ -1,52 +1,49 @@
-/************************************************
- * bubblesort                                   *
- *                                              *
- *  -> run through the list                     *
- *  -> compare pair of adjacent items           *
- *  -> swap them if they are in wrong order     *
- *  -> repeat until no more swaps are needed    *
- ************************************************/
+/********************************************************************************
+ * Title: Bubblesort
+ * Project: Coding Challenges
+ * Author: Niko Köser
+ * Description: Given an array filled with numbers. Iterate over the array and
+ *  compare every pair of adjacent elements. Swap them if the value of the left
+ *  element is bigger than the value of the right element. Repeat until the array
+ *  is sorted.
+ *******************************************************************************/
 
-/* includes */
+/* Includes */
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include "../../helper-functions/array_help.h"
 
-/* declarations */
-void bubblesort(int* some_array, const unsigned int array_length);
+/* Declarations */
+void bubblesort(int* arr, const unsigned int len);
 
-/* main / wrapper function */
+/* Main function */
 int main() {
   printf("BUBBLESORT\n\n");
 
-  /* create a random array of given length */
-  const int array_length = 10;
-  int* number_array = (int*)malloc(sizeof(int) * array_length);
-  make_random_array(number_array, array_length);
+  /* Create a random array */
+  const unsigned int len = 10;
+  int* arr = (int*)malloc(sizeof(int) * len);
+  make_random_array(arr, len);
 
-  /* print unsorted array */
-  const int new_line = 50;
-  print_array(number_array, array_length, new_line);
+  /* Print unsorted array */
+  const unsigned int new_line = 50;
+  print_array(arr, len, new_line);
 
-  /* sort the array */
-  bubblesort(number_array, array_length);
+  /* Sort the array */
+  bubblesort(arr, len);
 
-  /* print sorted array */
-  print_array(number_array, array_length, new_line);
-  free(number_array);
+  /* Print sorted array */
+  print_array(arr, len, new_line);
+  free(arr);
   return 0;
 }
 
-/* definitions */
-/* bubblesort algorithm */
-void bubblesort(int* some_array, const unsigned int array_length) {
-  for (unsigned int i = 0; i < array_length - 1; ++i) {
-    /* if element bigger than following element -> swap them
-     * and start again at first element
-     * */
-    if (some_array[i] > some_array[i + 1]) {
-      swap(&some_array[i], &some_array[i + 1]);
+/* Definitions */
+void bubblesort(int* arr, const unsigned int len) {
+  for (unsigned int i = 0; i < len - 1; ++i) {
+    if (arr[i] > arr[i + 1]) {
+      swap(&arr[i], &arr[i + 1]);
       i = -1;
     }
   }
