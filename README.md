@@ -12,12 +12,13 @@ Project Overview
 * Collatz-Conjecture Algorithm
 * Compression
 * Euclidian Algorithm
+* Factorial
 * Fermat's Little Theorem
 * Fibonacci
 * FizzBuzz
+* Happy Numbers
 * Heap Permutation
 * Insertsort
-* Happy Numbers
 * Pig Latin
 * Quicksort
 * Reverse String
