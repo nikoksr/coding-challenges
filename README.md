@@ -1,10 +1,7 @@
-Coding Challenges
-=================
+# Coding Challenges
 List of small coding projects / challenges - done for practice and fun
 
-
-Project Overview
-================
+## Project Overview
 * Armstrong Numbers
 * Binary Search
 * Bubblesort
@@ -24,7 +21,5 @@ Project Overview
 * Reverse String
 * Selectionsort
 
-
-Additional Informations
-=======================
+## Additional Informations
 Written in C(GCC 8.2) and Python(3.7)
