@@ -9,10 +9,8 @@ void print_array(int* arr, const unsigned int len, const unsigned int new_line) 
     if (i != 0 && i % new_line == 0) {
       printf("\n");
     }
-
     printf("%d ", arr[i]);
   }
-
   printf("\n");
 }
 
@@ -27,7 +25,7 @@ void make_random_array(int* arr, const unsigned int len) {
 
 void make_sorted_array(int* arr, const unsigned int len) {
   for (unsigned int i = 0; i < len; ++i) {
-    arr[i] = (i);
+    arr[i] = i;
   }
 }
 
