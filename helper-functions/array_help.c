@@ -25,8 +25,10 @@ void make_random_array(int* arr, const int start, const int end) {
 }
 
 void make_sorted_array(int* arr, const int start, const int end) {
-    for (int i = start; i <= end; ++i) {
-        arr[i] = i;
+    const unsigned int len = end - start + 1;
+
+    for (unsigned int i = 0; i < len; ++i) {
+        arr[i] = i + start;
     }
 }
 
