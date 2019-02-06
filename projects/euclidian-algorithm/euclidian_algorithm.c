@@ -20,53 +20,53 @@ unsigned int greatest_common_divisor(const unsigned int num_one, const int unsig
 
 /* Main function */
 int main() {
-  const unsigned int num_one = 120;
-  const unsigned int num_two = 180;
-  const unsigned int gcd = greatest_common_divisor(num_one, num_two);
+    const unsigned int num_one = 120;
+    const unsigned int num_two = 180;
+    const unsigned int gcd = greatest_common_divisor(num_one, num_two);
 
-  printf("%d\n", gcd);
-  return 0;
+    printf("%d\n", gcd);
+    return 0;
 }
 
 /* Definitions */
 void sort_bigger_smaller(unsigned int* num_one, unsigned int* num_two) {
-  if (*num_one < *num_two) {
-    const unsigned int tmp = *num_one;
-    *num_one = *num_two;
-    *num_two = tmp;
-  }
+    if (*num_one < *num_two) {
+        const unsigned int tmp = *num_one;
+        *num_one = *num_two;
+        *num_two = tmp;
+    }
 }
 
 unsigned int euclidian_algo(unsigned int bigger, unsigned int smaller) {
-  unsigned int remainder = bigger % smaller;
-  unsigned int old_remainder;
+    unsigned int remainder = bigger % smaller;
+    unsigned int old_remainder;
 
-  while (remainder > 1) {
-    old_remainder = remainder;
-    bigger = smaller;
-    smaller = remainder;
-    remainder = bigger % smaller;
-  }
+    while (remainder > 1) {
+        old_remainder = remainder;
+        bigger = smaller;
+        smaller = remainder;
+        remainder = bigger % smaller;
+    }
 
-  if (remainder == 0) {
-    return old_remainder;
-  }
+    if (remainder == 0) {
+        return old_remainder;
+    }
 
-  return 1;
+    return 1;
 }
 
 unsigned int greatest_common_divisor(const unsigned int num_one, const unsigned int num_two) {
-  if (num_one == num_two) {
-    return num_one;
-  }
+    if (num_one == num_two) {
+        return num_one;
+    }
 
-  unsigned int bigger = num_one;
-  unsigned int smaller = num_two;
-  sort_bigger_smaller(&bigger, &smaller);
+    unsigned int bigger = num_one;
+    unsigned int smaller = num_two;
+    sort_bigger_smaller(&bigger, &smaller);
 
-  if (bigger % smaller == 0) {
-    return smaller;
-  }
+    if (bigger % smaller == 0) {
+        return smaller;
+    }
 
-  return euclidian_algo(bigger, smaller);
+    return euclidian_algo(bigger, smaller);
 }

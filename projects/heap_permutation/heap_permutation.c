@@ -18,36 +18,38 @@ void heap_permutation(int* arr, const unsigned int original_len, const unsigned 
 
 /* Main function */
 int main() {
-  printf("HEAP PERMUTATION\n\n");
+    printf("HEAP PERMUTATION\n\n");
 
-  /* Create sorted array and run heap permutation */
-  const unsigned int len = 3;
-  int* arr = (int*)malloc(sizeof(int) * len);
+    /* Create sorted array and run heap permutation */
+    const int start = 0;
+    const int end = 4;
+    const unsigned int len = end - start + 1;
+    int* arr = (int*)malloc(sizeof(int) * len);
 
-  make_sorted_array(arr, len);
-  heap_permutation(arr, len, len);
-  free(arr);
-  return 0;
+    make_sorted_array(arr, start, end);
+    heap_permutation(arr, len, len);
+    free(arr);
+    return 0;
 }
 
 /* Definitions */
 void heap_permutation(int* arr, const unsigned int original_len, const unsigned int new_len) {
-  if (new_len == 1) {
-    print_array(arr, original_len, 25);
-    return;
-  }
-
-  for (unsigned int i = 0; i < new_len; ++i) {
-    /* Decrease length by one and call recursivly */
-    heap_permutation(arr, original_len, new_len - 1);
-
-    /* If length is even, swap i-th and last element */
-    if (new_len % 2 == 0) {
-      swap(&arr[i], &arr[new_len - 1]);
+    if (new_len == 1) {
+        print_array(arr, original_len, 25);
+        return;
     }
-    /* If length is odd, swap first and last element */
-    else {
-      swap(&arr[0], &arr[new_len - 1]);
+
+    for (unsigned int i = 0; i < new_len; ++i) {
+        /* Decrease length by one and call recursivly */
+        heap_permutation(arr, original_len, new_len - 1);
+
+        /* If length is even, swap i-th and last element */
+        if (new_len % 2 == 0) {
+            swap(&arr[i], &arr[new_len - 1]);
+        }
+        /* If length is odd, swap first and last element */
+        else {
+            swap(&arr[0], &arr[new_len - 1]);
+        }
     }
-  }
 }

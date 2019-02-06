@@ -19,46 +19,48 @@ void selection_sort(int* arr, const unsigned int len);
 
 /* Main function */
 int main() {
-  printf("SELECTION-SORT\n\n");
+    printf("SELECTION-SORT\n\n");
 
-  /* Create a random array */
-  const unsigned int len = 100000;
-  int* arr = (int*)malloc(sizeof(int) * len);
-  make_random_array(arr, len);
+    /* Create a random array */
+    const int start = 0;
+    const int end = 1000;
+    const unsigned int len = end - start + 1;
+    int* arr = (int*)malloc(sizeof(int) * len);
+    make_random_array(arr, start, end);
 
-  /* Print the unsorted array */
-  const unsigned int new_line = 25;
-  print_array(arr, len, new_line);
+    /* Print the unsorted array */
+    const unsigned int new_line = 25;
+    print_array(arr, len, new_line);
 
-  /* Sort the array */
-  selection_sort(arr, len);
+    /* Sort the array */
+    selection_sort(arr, len);
 
-  /* Print the sorted array */
-  print_array(arr, len, new_line);
-  free(arr);
-  return 0;
+    /* Print the sorted array */
+    print_array(arr, len, new_line);
+    free(arr);
+    return 0;
 }
 
 /* Definitions */
 int find_smallest_value(int* arr, const unsigned int len, const unsigned int index) {
-  unsigned int smallest = index;
+    unsigned int smallest = index;
 
-  for (unsigned int i = (index + 1); i < len; ++i) {
-    if (arr[i] < arr[smallest]) {
-      smallest = i;
+    for (unsigned int i = (index + 1); i < len; ++i) {
+        if (arr[i] < arr[smallest]) {
+            smallest = i;
+        }
     }
-  }
 
-  return smallest;
+    return smallest;
 }
 
 void selection_sort(int* arr, const unsigned int len) {
-  unsigned int smallest;
+    unsigned int smallest;
 
-  for (unsigned int i = 0; i < len; ++i) {
-    smallest = find_smallest_value(arr, len, i);
-    if (arr[smallest] < arr[i]) {
-      swap(&arr[smallest], &arr[i]);
+    for (unsigned int i = 0; i < len; ++i) {
+        smallest = find_smallest_value(arr, len, i);
+        if (arr[smallest] < arr[i]) {
+            swap(&arr[smallest], &arr[i]);
+        }
     }
-  }
 }

@@ -22,14 +22,14 @@ unsigned int fermat_test(const unsigned int num, const unsigned int runs);
 
 /* Main function */
 int main() {
-  printf("FERMAT PRIMALITY TEST\n\n");
+    printf("FERMAT PRIMALITY TEST\n\n");
 
-  const unsigned int num = 7919;
-  const unsigned int runs = 1;
-  const unsigned int res = fermat_test(num, runs);
+    const unsigned int num = 7919;
+    const unsigned int runs = 1;
+    const unsigned int res = fermat_test(num, runs);
 
-  printf("%d -> %d\n", num, res);
-  return 0;
+    printf("%d -> %d\n", num, res);
+    return 0;
 }
 
 /* Definitions */
@@ -38,44 +38,44 @@ int main() {
  * too big to store for any c-type.
  */
 unsigned int pow_remainder(const unsigned int num, unsigned int random_num) {
-  unsigned int exponent = num - 1;
-  unsigned int remain = 1;
+    unsigned int exponent = num - 1;
+    unsigned int remain = 1;
 
-  while (exponent > 0) {
-    /*
-     * Only calculate if exponent is odd, since an even exponent
-     * would result in 0 remaining.
-     */
-    if (exponent % 2 != 0) {
-      remain = (remain * random_num) % num;
+    while (exponent > 0) {
+        /*
+         * Only calculate if exponent is odd, since an even exponent
+         * would result in 0 remaining.
+         */
+        if (exponent % 2 != 0) {
+            remain = (remain * random_num) % num;
+        }
+
+        random_num = (random_num * random_num) % num;
+        exponent /= 2;
     }
 
-    random_num = (random_num * random_num) % num;
-    exponent /= 2;
-  }
-
-  return remain;
+    return remain;
 }
 
 unsigned int fermat_test(const unsigned int num, const unsigned int runs) {
-  if (num < 2) {
-    return 0;
-  }
-
-  if (num == 2) {
-    return 1;
-  }
-
-  srand(time(NULL));
-
-  for (unsigned int i = 0; i < runs; ++i) {
-    const unsigned int random_num = rand() % (num - 2) + 2;
-    const unsigned int ferm = pow_remainder(num, random_num);
-
-    if (ferm != 1) {
-      return 0;
+    if (num < 2) {
+        return 0;
     }
-  }
 
-  return 1;
+    if (num == 2) {
+        return 1;
+    }
+
+    srand(time(NULL));
+
+    for (unsigned int i = 0; i < runs; ++i) {
+        const unsigned int random_num = rand() % (num - 2) + 2;
+        const unsigned int ferm = pow_remainder(num, random_num);
+
+        if (ferm != 1) {
+            return 0;
+        }
+    }
+
+    return 1;
 }

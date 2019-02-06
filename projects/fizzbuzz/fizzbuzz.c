@@ -17,39 +17,39 @@ void fizzbuzz(const unsigned int start, const unsigned int end);
 
 /* Main function */
 int main() {
-  const unsigned int start = 1;
-  const unsigned int end = 100;
+    const unsigned int start = 1;
+    const unsigned int end = 100;
 
-  fizzbuzz(start, end);
-  return 0;
+    fizzbuzz(start, end);
+    return 0;
 }
 
 /* Definitions */
 void fizzbuzz(const unsigned int start, const unsigned int end) {
-  if (end < start) {
-    printf("Invalid values.\n");
-    return;
-  }
-
-  for (unsigned int i = start; i <= end; ++i) {
-    char output[9];
-    output[0] = '\0';
-
-    /* Check for fizz and buzz first. If both than buzz gets appended to buzz. */
-    if(i % 3 == 0) {
-      strcat(output, "Fizz");
-    }
-    if(i % 5 == 0) {
-      strcat(output, "Buzz");
+    if (end < start) {
+        printf("Invalid values.\n");
+        return;
     }
 
-    /* Check if number was fizz, buzz or both. If not print the number. */
-    const unsigned len = (unsigned int)strlen(output);
+    for (unsigned int i = start; i <= end; ++i) {
+        char output[9];
+        output[0] = '\0';
 
-    if(len < 1) {
-      sprintf(output, "%u", i);
+        /* Check for fizz and buzz first. If both than buzz gets appended to buzz. */
+        if(i % 3 == 0) {
+            strcat(output, "Fizz");
+        }
+        if(i % 5 == 0) {
+            strcat(output, "Buzz");
+        }
+
+        /* Check if number was fizz, buzz or both. If not print the number. */
+        const unsigned len = (unsigned int)strlen(output);
+
+        if(len < 1) {
+            sprintf(output, "%u", i);
+        }
+
+        printf("%s\n", output);
     }
-
-    printf("%s\n", output);
-  }
 }

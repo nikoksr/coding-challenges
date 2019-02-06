@@ -19,32 +19,34 @@ void bubblesort(int* arr, const unsigned int len);
 
 /* Main function */
 int main() {
-  printf("BUBBLESORT\n\n");
+    printf("BUBBLESORT\n\n");
 
-  /* Create a random array */
-  const unsigned int len = 10;
-  int* arr = (int*)malloc(sizeof(int) * len);
-  make_random_array(arr, len);
+    /* Create a random array */
+    const int start = 0;
+    const int end = 1000;
+    const unsigned int len = end - start + 1;
+    int* arr = (int*)malloc(sizeof(int) * len);
+    make_random_array(arr, start, end);
 
-  /* Print unsorted array */
-  const unsigned int new_line = 50;
-  print_array(arr, len, new_line);
+    /* Print unsorted array */
+    const unsigned int new_line = 50;
+    print_array(arr, len, new_line);
 
-  /* Sort the array */
-  bubblesort(arr, len);
+    /* Sort the array */
+    bubblesort(arr, len);
 
-  /* Print sorted array */
-  print_array(arr, len, new_line);
-  free(arr);
-  return 0;
+    /* Print sorted array */
+    print_array(arr, len, new_line);
+    free(arr);
+    return 0;
 }
 
 /* Definitions */
 void bubblesort(int* arr, const unsigned int len) {
-  for (unsigned int i = 0; i < len - 1; ++i) {
-    if (arr[i] > arr[i + 1]) {
-      swap(&arr[i], &arr[i + 1]);
-      i = -1;
+    for (unsigned int i = 0; i < len - 1; ++i) {
+        if (arr[i] > arr[i + 1]) {
+            swap(&arr[i], &arr[i + 1]);
+            i = -1;
+        }
     }
-  }
 }
